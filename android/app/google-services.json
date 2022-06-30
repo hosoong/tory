@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "567814377809-cvas1tnolrik7jhrvalvlf9br3vgd1hr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.tory",
+            "certificate_hash": "3aac4ed72de882748bbcaa379b7537e102714846"
+          }
+        },
+        {
           "client_id": "567814377809-rocg110q20g0derbv4lqh7csvvrkbllv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -37,6 +45,13 @@
             {
               "client_id": "567814377809-5fvckbf7nnd9a2tnqo41l87h5m96m8lk.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "567814377809-8mc8r6dol6bju8qfnl6f0alc5792njaf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tory"
+              }
             }
           ]
         }
@@ -66,6 +81,13 @@
             {
               "client_id": "567814377809-5fvckbf7nnd9a2tnqo41l87h5m96m8lk.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "567814377809-8mc8r6dol6bju8qfnl6f0alc5792njaf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tory"
+              }
             }
           ]
         }
