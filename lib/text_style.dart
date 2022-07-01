@@ -18,3 +18,4 @@ TextStyle subtitlestyle({double? size, Color? color, FontWeight? weight}) {
     color: color,
   );
 }
+

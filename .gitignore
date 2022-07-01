@@ -45,3 +45,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/ios/
+ios/Runner.xcworkspace/contents.xcworkspacedata
+ios/Podfile
+ios/Runner.xcodeproj/project.pbxproj
+

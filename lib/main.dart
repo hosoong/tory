@@ -48,11 +48,13 @@ class MyApp extends StatelessWidget { //MyApp 클래스 선언
 class MyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ElevatedButton(
-        child: Text('button'),
-        onPressed: (){
-          createData();
-        },
+      body: Center(
+        child: ElevatedButton(
+          child: Text('button'),
+          onPressed: (){
+            createData();
+          },
+        ),
       ),
     );
   }
@@ -61,7 +63,7 @@ class MyPage extends StatelessWidget {
 void createData(){
   final usercol=FirebaseFirestore.instance.collection("users").doc("userkey1");
   usercol.set({
-    "username" : "abc",
-    "age" : 5,
+    "username" : "ddd",
+    "age" : 6,
   });
 }
