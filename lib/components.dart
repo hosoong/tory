@@ -1,31 +1,47 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 OutlinedButton AgeandGenderButton(String text){
+  bool isClicked = false;
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
-      primary: Colors.white,
+      minimumSize: Size(47, 27),
+      // maximumSize: Size(47, 27),
+      primary: isClicked ? Primary : Colors.black,
+      surfaceTintColor: Colors.blue,
+      side: BorderSide(
+        color: isClicked ? Primary : Colors.black,
+        width: 1,
+      ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
       textStyle: TextStyle(
-        color: Colors.black,
         fontSize: 12,
       ),
     ),
-    child: Text(text),
-    onPressed: (){},
+    child: Text(text, ),
+    onPressed: (){
+      
+    },
   );
 }
 
 OutlinedButton SearchChip(String text){
   return OutlinedButton(
+    
     style: OutlinedButton.styleFrom(
-      primary: Colors.white,
+      minimumSize: Size(47, 27),
+      primary: Colors.black,
+      side: BorderSide(
+        color:  Colors.black,
+        width: 1,
+      ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
       textStyle: TextStyle(
-        color: Colors.black,
         fontSize: 12,
       ),
     ),
@@ -37,20 +53,26 @@ OutlinedButton SearchChip(String text){
 OutlinedButton FilterButton(){
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
-      primary: Colors.white,
-      
+      // minimumSize: Size(59, 27),
+      fixedSize: Size(75, 27),
+      // maximumSize: Size(75, 27),
+      primary: Primary,
+      side: BorderSide(
+        color:  Primary,
+        width: 1,
+      ),
       shape: RoundedRectangleBorder(
         
         borderRadius: BorderRadius.circular(2),
       ),
       textStyle: TextStyle(
-        color: Colors.black,
         fontSize: 12,
       ),
     ),
     child: Row(
       children: [
-        Icon(Icons.filter_1_outlined, color: Colors.black),
+        Icon(Icons.filter_list, color: Primary, size: 16,),
+        SizedBox(width: 4,),
         Text("필터"),
       ],
     ),
@@ -58,58 +80,71 @@ OutlinedButton FilterButton(){
   );
 }
 
-OutlinedButton ThumbupButton(){
-  return OutlinedButton(
-    style: OutlinedButton.styleFrom(
-      primary: Colors.white,
-      
-      shape: RoundedRectangleBorder(
-        
-        borderRadius: BorderRadius.circular(2),
+SizedBox ThumbupButton(){
+    bool isClicked = false;
+  return SizedBox(
+    width: 64,
+    height: 29,
+    child: OutlinedButton(
+      style: OutlinedButton.styleFrom(
+
+        // fixedSize: Size(58,29),
+        primary: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(2),
+        ),
+        textStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 12,
+        ),
       ),
-      textStyle: TextStyle(
-        color: Colors.black,
-        fontSize: 12,
+      child: Row(
+        children: [
+          Icon(Icons.thumb_up, color: Colors.black, size: 12,),
+          SizedBox(width: 4,),
+          Text("22"),
+        ],
       ),
+      onPressed: (){},
     ),
-    child: Row(
-      children: [
-        Icon(Icons.thumb_up, color: Colors.black),
-        Text("22"),
-      ],
-    ),
-    onPressed: (){},
   );
 }
 
-OutlinedButton ThumbdownButton(){
-  return OutlinedButton(
-    style: OutlinedButton.styleFrom(
-      primary: Colors.white,
-      
-      shape: RoundedRectangleBorder(
-        
-        borderRadius: BorderRadius.circular(2),
+SizedBox ThumbdownButton(){
+    bool isClicked = false;
+  return SizedBox(
+    width: 64,
+    height: 29,
+    child: OutlinedButton(
+      style: OutlinedButton.styleFrom(
+
+        // fixedSize: Size(58,29),
+        primary: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(2),
+        ),
+        textStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 12,
+        ),
       ),
-      textStyle: TextStyle(
-        color: Colors.black,
-        fontSize: 12,
+      child: Row(
+        children: [
+          Icon(Icons.thumb_up, color: Colors.black, size: 12,),
+          SizedBox(width: 4,),
+          Text("22"),
+        ],
       ),
+      onPressed: (){},
     ),
-    child: Row(
-      children: [
-        Icon(Icons.thumb_down, color: Colors.black),
-        Text("22"),
-      ],
-    ),
-    onPressed: (){},
   );
 }
 
 OutlinedButton WatchEndingButton(){
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
-      primary: Colors.white,
+      primary: Colors.black,
+      fixedSize: Size(80, 29),
       
       shape: RoundedRectangleBorder(
         
@@ -128,7 +163,7 @@ OutlinedButton WatchEndingButton(){
 OutlinedButton VoteButton(){
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
-      primary: Colors.white,
+      primary: Colors.black,
       
       shape: RoundedRectangleBorder(
         
