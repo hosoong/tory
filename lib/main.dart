@@ -12,64 +12,56 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'home.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart'; //flutter의 package를 가져오는 코드 반드시 필요
+// Import the firebase_core plugin
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+//
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//
+//   runApp(MyApp());
+// }
 
-  @override
+class MyApp extends StatelessWidget { //MyApp 클래스 선언
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Image Picker Demo',
-      home: MyHomePage(title: 'Image Picker Example'),
+    return MaterialApp(
+      title: 'my first app',
+      home: MyPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String? title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  int count= 0;
-
-  @override
+class MyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title!),
-      ),
-      
-      body: Center(
-        child: Column(
-          children: [
-            Text('hello, world!'),
-            Text("$count"),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
+      body: ElevatedButton(
+        child: Text('button'),
         onPressed: (){
-          setState(() {
-            count++;
-          });
+          createData();
         },
-        child: const Icon(Icons.add_a_photo),
       ),
-      
     );
   }
+}
+
+void createData(){
+  final usercol=FirebaseFirestore.instance.collection("users").doc("userkey1");
+  usercol.set({
+    "username" : "abc",
+    "age" : 5,
+  });
 }

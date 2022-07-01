@@ -3,10 +3,6 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-// import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart';
-
-// ...
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -14,9 +10,9 @@ import 'package:flutter/foundation.dart'
 /// ```dart
 /// import 'firebase_options.dart';
 /// // ...
-//  await Firebase.initializeApp(
-//    options: DefaultFirebaseOptions.currentPlatform,
-//  );
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
 /// ```
 class DefaultFirebaseOptions {
 
@@ -68,7 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '567814377809',
     projectId: 'tory-74c72',
     storageBucket: 'tory-74c72.appspot.com',
-    androidClientId: '567814377809-rocg110q20g0derbv4lqh7csvvrkbllv.apps.googleusercontent.com',
+    androidClientId: '567814377809-cvas1tnolrik7jhrvalvlf9br3vgd1hr.apps.googleusercontent.com',
     iosClientId: '567814377809-8mc8r6dol6bju8qfnl6f0alc5792njaf.apps.googleusercontent.com',
     iosBundleId: 'com.example.tory',
   );
