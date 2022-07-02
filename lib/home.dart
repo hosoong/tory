@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -41,6 +42,13 @@ class _HomePageState extends State<HomePage> {
         bottomOpacity: 0.0,
         elevation: 0.0,
         title: Text('Tory',style: TextStyle(color: Colors.black),),
+        leading: IconButton(
+          icon: new Icon(Icons.markunread_mailbox_outlined,color: Colors.black,),
+          tooltip: 'icon!',
+          onPressed: () => {
+            Get.toNamed('/mainp'),
+          },
+        ),
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.search,color: Colors.black,),

@@ -11,12 +11,15 @@ import 'components.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'mainpage.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(MyApp());
 }
 
@@ -25,12 +28,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: (context, child) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'my first app',
         home: HomePage(),
         getPages: [
           GetPage(
             name: '/',
             page: () => HomePage(),
+          ),
+          GetPage(
+            name: '/mainp',
+            page: () => MainPage(),
           ),
         ],
       ),
