@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(414,896),
       builder: (context, child) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: MaterialColor(background2.value, {
             50: Color(0xFF174378),
