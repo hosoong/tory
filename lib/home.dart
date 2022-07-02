@@ -30,21 +30,25 @@ class _HomePageState extends State<HomePage> {
   ];
 
   int activePage = 1;
+  int Page=4;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
         title: Text('Tory',style: TextStyle(color: Colors.black),),
         actions: <Widget>[
           new IconButton(
-            icon: new Icon(Icons.search),
+            icon: new Icon(Icons.search,color: Colors.black,),
             tooltip: 'icon!',
             onPressed: () => {},
           ),
           new IconButton(
-            icon: new Icon(Icons.square),
+            icon: new Icon(Icons.square,color: Colors.black,),
             tooltip: 'icon',
             onPressed: () => {},
           )
@@ -74,11 +78,35 @@ class _HomePageState extends State<HomePage> {
                      );
                    }),
                  ),
+                Align(
+                  alignment:Alignment(-0.7,-0.5),
+                  child:Text('나의 연애를 응원해죠',textAlign: TextAlign.start,),
+                ),
                 Container(
+                  margin: EdgeInsets.all(10),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('나의 연애를 응원해죠'),
-
+                      Container(
+                        child: SizedBox(
+                          height: 200,
+                          child: PageView.builder(
+                              itemCount: 4,
+                              pageSnapping: true,
+                              controller: _pageController,
+                              onPageChanged: (page) {
+                                setState(() {
+                                  Page = page;
+                                });
+                              },
+                              itemBuilder: (context, pagePosition) {
+                                return Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: Image.network(images[pagePosition]),
+                                );
+                              }),
+                        ),
+                      ),
                     ],
                   ),
                 )
@@ -90,3 +118,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
