@@ -18,3 +18,8 @@ TextStyle subtitlestyle({double? size, Color? color, FontWeight? weight}) {
     color: color,
   );
 }
+
+TextStyle bodystyle = TextStyle(
+    fontSize: 18,
+    color: Colors.black,
+  );
