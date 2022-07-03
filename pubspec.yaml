@@ -37,6 +37,7 @@ dependencies:
   image_picker: ^0.8.5+3
   carousel_slider: ^4.1.1
   cloud_firestore:
+  infinite_carousel: ^1.0.2
 
 dev_dependencies:
   flutter_test:
