@@ -4,10 +4,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:tory/colors.dart';
 import 'package:tory/story_page.dart';
 import 'package:tory/story_page2.dart';
+import 'package:tory/end_page.dart';
+import 'package:tory/vote.dart';
 import 'firebase_options.dart';
+import 'package:tory/end_page.dart';
 
 import 'home.dart';
-
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'components.dart';
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         title: 'my first app',
-        home: StoryPage(),
+        home: VotePage(),
         getPages: [
           GetPage(
             name: '/',
@@ -59,6 +61,14 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/story2',
             page: () => StoryPage2(),
+          ),
+          GetPage(
+            name: '/end',
+            page: () => EndPage(),
+          ),
+          GetPage(
+            name: '/vote',
+            page: () => VotePage(),
           ),
         ],
       ),
