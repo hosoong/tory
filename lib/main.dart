@@ -2,19 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tory/colors.dart';
+import 'package:tory/splash_screen.dart';
 import 'package:tory/story_page.dart';
 import 'package:tory/story_page2.dart';
-import 'package:tory/end_page.dart';
-import 'package:tory/vote.dart';
 import 'firebase_options.dart';
-import 'package:tory/end_page.dart';
+import 'mainpage.dart';
 
 import 'home.dart';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'components.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'noticepage.dart';
 
 
 void main() async {
@@ -48,7 +50,8 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         title: 'my first app',
-        home: VotePage(),
+        home: HomePage(),
+        initialRoute: '/splash',
         getPages: [
           GetPage(
             name: '/',
@@ -63,12 +66,16 @@ class MyApp extends StatelessWidget {
             page: () => StoryPage2(),
           ),
           GetPage(
-            name: '/end',
-            page: () => EndPage(),
+            name: '/splash',
+            page: () => SplashScreen(),
           ),
           GetPage(
-            name: '/vote',
-            page: () => VotePage(),
+            name: '/mainpage',
+            page: () => MainPage(),
+          ),
+          GetPage(
+            name: '/noticepage',
+            page: () => NoticePage(),
           ),
         ],
       ),
