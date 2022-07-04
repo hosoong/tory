@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
   //MyApp 클래스 선언
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      // designSize: Size(414,896),
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'my first app',
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
             page: () => HomePage(),
           ),
           GetPage(
-            name: '/mainpage',
+            name: '/mainp',
             page: () => MainPage(),
           ),
         ],
