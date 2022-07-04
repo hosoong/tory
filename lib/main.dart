@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tory/colors.dart';
+import 'package:tory/splash_screen.dart';
 import 'package:tory/story_page.dart';
 import 'package:tory/story_page2.dart';
 import 'firebase_options.dart';
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         title: 'my first app',
-        home: StoryPage(),
+        home: HomePage(),
+        initialRoute: '/splash',
         getPages: [
           GetPage(
             name: '/',
@@ -59,6 +61,10 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/story2',
             page: () => StoryPage2(),
+          ),
+          GetPage(
+            name: '/splash',
+            page: () => SplashScreen(),
           ),
         ],
       ),
