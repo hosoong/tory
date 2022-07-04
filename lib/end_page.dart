@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tory/colors.dart';
 import 'package:tory/text_style.dart';
+
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:bubble/bubble.dart';
