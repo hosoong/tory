@@ -23,3 +23,9 @@ TextStyle bodystyle = TextStyle(
     fontSize: 18,
     color: Colors.black,
   );
+
+TextStyle titlestyle = TextStyle(
+  fontSize: 18,
+  color: Colors.black,
+  fontWeight: FontWeight.bold,
+);

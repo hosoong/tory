@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tory/colors.dart';
 import 'package:tory/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 var _mwidth;
 var _mheight;
@@ -20,6 +20,7 @@ var image0='assets/love.png';
 var title='사랑해... 사랑한다고... 고백모음';
 //
 
+//TODO: SliverAppBar 해야함
 class MainPage extends StatefulWidget {
   @override
   _MainPage createState() => _MainPage();
@@ -46,22 +47,22 @@ class _MainPage extends State<MainPage> {
       ),
       body: Container( //헤더 이미지랑 헤더 타이
         color: background3,
-        width: _mwidth,
-        height: _mheight,
+        width: MediaQuery.of(context).size.width.w,
+        height: MediaQuery.of(context).size.height.h,
         child: Column(
           children: [
             Stack(
               children: [
                 SizedBox(
-                    width: _mwidth,
-                    height: 155,
+                    width: MediaQuery.of(context).size.width.w,
+                    height: 155.h,
                     child: Image.asset(
                       '${image0}',
                       fit: BoxFit.fill,
                     )),
                 Positioned(
-                    top: 109,
-                    left: 20,
+                    top: 109.h,
+                    left: 20.w,
                     child: Text(
                       '${title}',
                       style: subtitlestyle(
@@ -70,7 +71,7 @@ class _MainPage extends State<MainPage> {
               ],
             ),
             SizedBox(
-              height: 24,
+              height: 24.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -81,7 +82,7 @@ class _MainPage extends State<MainPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 25,
+                        width: 25.w,
                       ),
                       Text(
                         '24개의 토리',
@@ -92,7 +93,7 @@ class _MainPage extends State<MainPage> {
                 ),
                 //필터, 정렬기능
                 Container(
-                  width: MediaQuery.of(context).size.width/2-22,
+                  width: (MediaQuery.of(context).size.width/2-22).w,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -124,11 +125,11 @@ class _MainPage extends State<MainPage> {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             //short long 등 스토리 리스트
             Container(
-              height: 550,
+              height: 550.h,
               child: ListView(
                 scrollDirection: Axis.vertical,
                 physics: ClampingScrollPhysics(),
@@ -181,8 +182,8 @@ Widget _categoryMark(String category) {
           ),
         ],
       ),
-      width: 40,
-      height: 21,
+      width: 40.w,
+      height: 21.h,
       child: Padding(
         padding: const EdgeInsets.all(1.0),
         child: Text(' ${category}'),
@@ -204,8 +205,8 @@ Widget _categoryMark(String category) {
             ),
           ],
         ),
-        width: 35,
-        height: 21,
+        width: 35.w,
+        height: 21.h,
         child: Padding(
           padding: const EdgeInsets.all(2.0),
           child: Text(' ${category}'),
@@ -219,94 +220,101 @@ Widget mainPageListTile(
       String title, String subtitle, String category, String image,String type) {
     var textid; // image,title,subtitle,textid
 
-    return Column(
-      children: [
-        SizedBox(
-          height: 4,
-        ),
-        Stack(
+    return InkWell(
+      child: Container(
+        child: Column(
           children: [
-            Container(
-              // margin: EdgeInsets.fromLTRB(20, 4, 0, 24),
-              width: 368,
-              height: 88,
-              color: background3,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Stack(
+            SizedBox(
+              height: 4.h,
+            ),
+            Stack(
+              children: [
+                Container(
+                  // margin: EdgeInsets.fromLTRB(20, 4, 0, 24),
+                  width: 368.w,
+                  height: 91.h,
+                  color: background3,
+                  child: Row(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4.0),
-                        child: Image.asset(
-                          image,
-                          fit: BoxFit.fill,
-                        ), // Text(key['title']),
+                      SizedBox(
+                        width: 4.w,
                       ),
-                      // Container(
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(30),
-                      //   ),
-                      //   margin: EdgeInsets.only(left: 4),
-                      //   width: 86,
-                      //   height: 86,
-                      //   // color: SubPrimary,
-                      //   child: Image.asset(
-                      //     image,
-                      //     fit: BoxFit.fill,
-                      //   ),
-                      // ),
-                      Positioned(
-                        left: 0,
-                        top: 8,
-                        child: _categoryMark(category),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '[${type}] ${title}',
-                        style: subtitlestyle(
-                            size: 16, color: text2, weight: FontWeight.bold),
+                      Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4.0),
+                            child: Image.asset(
+                              image,
+                              fit: BoxFit.fill,
+                            ), // Text(key['title']),
+                          ),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(30),
+                          //   ),
+                          //   margin: EdgeInsets.only(left: 4),
+                          //   width: 86,
+                          //   height: 86,
+                          //   // color: SubPrimary,
+                          //   child: Image.asset(
+                          //     image,
+                          //     fit: BoxFit.fill,
+                          //   ),
+                          // ),
+                          Positioned(
+                            left: 0,
+                            top: 8.h,
+                            child: _categoryMark(category),
+                          ),
+                        ],
                       ),
                       SizedBox(
-                        height: 10,
+                        width: 16.w,
                       ),
-                      Text(
-                        '${subtitle}',
-                        style: subtitlestyle(size: 14, color: text1),
-                      ),
-                      Text(
-                        '#sdfs #fsdf',
-                        style: subtitlestyle(size: 12, color: Primary),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '[${type}] ${title}',
+                            style: subtitlestyle(
+                                size: 16, color: text2, weight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            '${subtitle}',
+                            style: subtitlestyle(size: 14, color: text1),
+                          ),
+                          Text(
+                            '#sdfs #fsdf',
+                            style: subtitlestyle(size: 12, color: Primary),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                // Positioned(
+                //     right: 2,
+                //     bottom: 12,
+                //     child: Text('조짱',style: subtitlestyle(size: 12, color: text1),)
+                // ),
+              ],
             ),
-            // Positioned(
-            //     right: 2,
-            //     bottom: 12,
-            //     child: Text('조짱',style: subtitlestyle(size: 12, color: text1),)
-            // ),
+            SizedBox(
+              height: 8.h,
+            ),
+            Divider(
+              thickness: 1, indent: 24.w, // empty space to the leading edge of divider.
+              endIndent: 24.w,
+            ),
           ],
         ),
-        SizedBox(
-          height: 8,
-        ),
-        Divider(
-          thickness: 1, indent: 24, // empty space to the leading edge of divider.
-          endIndent: 24,
-        ),
-      ],
+      ),
+      onTap: (){
+        print('sdfasdfjellpo${category}');
+      },
     );
   }
 
