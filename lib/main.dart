@@ -66,6 +66,10 @@ class MyApp extends StatelessWidget {
             name: '/splash',
             page: () => SplashScreen(),
           ),
+          GetPage(
+            name: '/mainpage',
+            page: () => MainPage(),
+          ),
         ],
       ),
     );
