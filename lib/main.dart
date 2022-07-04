@@ -16,6 +16,8 @@ import 'components.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'noticepage.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,6 +72,10 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/mainpage',
             page: () => MainPage(),
+          ),
+          GetPage(
+            name: '/noticepage',
+            page: () => NoticePage(),
           ),
         ],
       ),
