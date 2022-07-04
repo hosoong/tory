@@ -6,6 +6,7 @@ import 'package:tory/splash_screen.dart';
 import 'package:tory/story_page.dart';
 import 'package:tory/story_page2.dart';
 import 'firebase_options.dart';
+import 'mainpage.dart';
 
 import 'home.dart';
 
