@@ -6,6 +6,8 @@ import 'package:tory/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'components.dart';
+
 var _mwidth;
 var _mheight;
 
@@ -93,12 +95,12 @@ class _MainPage extends State<MainPage> {
                         Text(
                           '${title}',
                           style: subtitlestyle(
-                              size: 20, color: text2, weight: FontWeight.bold),
+                              size: 20, color: text_on_background, weight: FontWeight.bold),
                         ),
                         SizedBox(height: 8,),
                         Text(
                           '총 24개의 토리',
-                          style: subtitlestyle(size: 14, color: text2),
+                          style: subtitlestyle(size: 14, color: text_on_color),
                         ),
                       ],
                     ),
@@ -118,7 +120,7 @@ class _MainPage extends State<MainPage> {
                           SizedBox(
                             width: 25.w,
                           ),
-                          Text('filter'),
+                          FilterButton(),
                         ],
                       ),
                     ),
@@ -188,10 +190,56 @@ class _MainPage extends State<MainPage> {
           ],
         ),
       ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     _sortingFilter(context);
+      //   },
+      //   label: const Text('좋아요'),
+      //   icon: const Icon(Icons.thumb_up),
+      //   backgroundColor: Colors.pink,
+      // ),
     );
+
   }
 }
 
+_sortingFilter(BuildContext context){
+  showDialog(
+      context: context,
+      //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0)),
+          //Dialog Main Title
+          title: Column(
+            children: <Widget>[
+              new Text("Dialog Title"),
+            ],
+          ),
+          //
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Dialog Content",
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("확인"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      });
+}
 
 void createData() {
   final usercol =
@@ -277,12 +325,15 @@ Widget mainPageListTile(
                       ),
                       Stack(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(4.0),
-                            child: Image.asset(
-                              image,
-                              fit: BoxFit.fill,
-                            ), // Text(key['title']),
+                          Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4.0),
+                              child: Image.asset(
+                                image,
+                                fit: BoxFit.fill,
+                              ), // Text(key['title']),
+                            ),
                           ),
                           Positioned(
                             left: 0,
@@ -300,14 +351,14 @@ Widget mainPageListTile(
                           Text(
                             '[${type}] ${title}',
                             style: subtitlestyle(
-                                size: 16, color: text2, weight: FontWeight.bold),
+                                size: 16, color: text_on_background, weight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10.h,
                           ),
                           Text(
                             '${subtitle}',
-                            style: subtitlestyle(size: 14, color: text1),
+                            style: subtitlestyle(size: 14, color: text_on_color),
                           ),
                           Text(
                             '#sdfs #fsdf',
