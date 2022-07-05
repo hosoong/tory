@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
-OutlinedButton AgeandGenderButton(String text){
+OutlinedButton AgeandGenderButton(String text) {
   bool isClicked = false;
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
       minimumSize: Size(47, 27),
       // maximumSize: Size(47, 27),
-      primary: isClicked ? Primary : Colors.black,
+      primary: isClicked ? Primary600 : Colors.black,
       surfaceTintColor: Colors.blue,
       side: BorderSide(
-        color: isClicked ? Primary : Colors.black,
+        color: isClicked ? Primary600 : Colors.black,
         width: 1,
       ),
       shape: RoundedRectangleBorder(
@@ -21,21 +21,20 @@ OutlinedButton AgeandGenderButton(String text){
         fontSize: 12,
       ),
     ),
-    child: Text(text, ),
-    onPressed: (){
-      
-    },
+    child: Text(
+      text,
+    ),
+    onPressed: () {},
   );
 }
 
-OutlinedButton SearchChip(String text){
+OutlinedButton SearchChip(String text) {
   return OutlinedButton(
-    
     style: OutlinedButton.styleFrom(
       minimumSize: Size(47, 27),
       primary: Colors.black,
       side: BorderSide(
-        color:  Colors.black,
+        color: Colors.black,
         width: 1,
       ),
       shape: RoundedRectangleBorder(
@@ -46,23 +45,22 @@ OutlinedButton SearchChip(String text){
       ),
     ),
     child: Text(text),
-    onPressed: (){},
+    onPressed: () {},
   );
 }
 
-OutlinedButton FilterButton(){
+OutlinedButton FilterButton() {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
       // minimumSize: Size(59, 27),
       fixedSize: Size(75, 27),
       // maximumSize: Size(75, 27),
-      primary: Primary,
+      primary: Primary600,
       side: BorderSide(
-        color:  Primary,
+        color: Primary600,
         width: 1,
       ),
       shape: RoundedRectangleBorder(
-        
         borderRadius: BorderRadius.circular(2),
       ),
       textStyle: TextStyle(
@@ -71,23 +69,28 @@ OutlinedButton FilterButton(){
     ),
     child: Row(
       children: [
-        Icon(Icons.filter_list, color: Primary, size: 16,),
-        SizedBox(width: 4,),
+        Icon(
+          Icons.filter_list,
+          color: Primary600,
+          size: 16,
+        ),
+        SizedBox(
+          width: 4,
+        ),
         Text("필터"),
       ],
     ),
-    onPressed: (){},
+    onPressed: () {},
   );
 }
 
-SizedBox ThumbupButton(){
-    bool isClicked = false;
+SizedBox ThumbupButton() {
+  bool isClicked = false;
   return SizedBox(
     width: 64,
     height: 29,
     child: OutlinedButton(
       style: OutlinedButton.styleFrom(
-
         // fixedSize: Size(58,29),
         primary: Colors.black,
         shape: RoundedRectangleBorder(
@@ -100,24 +103,29 @@ SizedBox ThumbupButton(){
       ),
       child: Row(
         children: [
-          Icon(Icons.thumb_up, color: Colors.black, size: 12,),
-          SizedBox(width: 4,),
+          Icon(
+            Icons.thumb_up,
+            color: Colors.black,
+            size: 12,
+          ),
+          SizedBox(
+            width: 4,
+          ),
           Text("22"),
         ],
       ),
-      onPressed: (){},
+      onPressed: () {},
     ),
   );
 }
 
-SizedBox ThumbdownButton(){
-    bool isClicked = false;
+SizedBox ThumbdownButton() {
+  bool isClicked = false;
   return SizedBox(
     width: 64,
     height: 29,
     child: OutlinedButton(
       style: OutlinedButton.styleFrom(
-
         // fixedSize: Size(58,29),
         primary: Colors.black,
         shape: RoundedRectangleBorder(
@@ -130,24 +138,28 @@ SizedBox ThumbdownButton(){
       ),
       child: Row(
         children: [
-          Icon(Icons.thumb_up, color: Colors.black, size: 12,),
-          SizedBox(width: 4,),
+          Icon(
+            Icons.thumb_up,
+            color: Colors.black,
+            size: 12,
+          ),
+          SizedBox(
+            width: 4,
+          ),
           Text("22"),
         ],
       ),
-      onPressed: (){},
+      onPressed: () {},
     ),
   );
 }
 
-OutlinedButton WatchEndingButton(){
+OutlinedButton WatchEndingButton() {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
       primary: Colors.black,
       fixedSize: Size(80, 29),
-      
       shape: RoundedRectangleBorder(
-        
         borderRadius: BorderRadius.circular(2),
       ),
       textStyle: TextStyle(
@@ -156,17 +168,15 @@ OutlinedButton WatchEndingButton(){
       ),
     ),
     child: Text("결말보기"),
-    onPressed: (){},
+    onPressed: () {},
   );
 }
 
-OutlinedButton VoteButton(){
+OutlinedButton VoteButton() {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
       primary: Colors.black,
-      
       shape: RoundedRectangleBorder(
-        
         borderRadius: BorderRadius.circular(2),
       ),
       textStyle: TextStyle(
@@ -175,7 +185,7 @@ OutlinedButton VoteButton(){
       ),
     ),
     child: Text("투표 (22)"),
-    onPressed: (){},
+    onPressed: () {},
   );
 }
 
