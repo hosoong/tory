@@ -12,11 +12,12 @@ var _mheight;
 //remove
 var title1 = '숨겨왔던 나의 수줍은 마음';
 var cate1 = 'open';
+var cate2 = 'lock';
 var type1 = 'long';
 var type2 = 'short';
 var subtitle1 = '모두 네게 줄게\n썸녀에게 고백하기';
 var image1 = 'assets/love1.png';
-var image0='assets/love.png';
+var image0='assets/love2.png';
 var title='사랑해... 사랑한다고... 고백모음';
 //
 
@@ -33,19 +34,21 @@ class _MainPage extends State<MainPage> {
     _mheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: background3,
+        backgroundColor: Color(0xFFAAC8C8),
         elevation: 0,
+        leadingWidth: 81,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Get.toNamed('/');
           },
         ),
       ),
-      body: Container( //헤더 이미지랑 헤더 타이
+      body: Container(
+        //헤더 이미지랑 헤더 타이
         color: background3,
         width: MediaQuery.of(context).size.width.w,
         height: MediaQuery.of(context).size.height.h,
@@ -53,83 +56,116 @@ class _MainPage extends State<MainPage> {
           children: [
             Stack(
               children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width.w,
-                    height: 155.h,
-                    child: Image.asset(
-                      '${image0}',
-                      fit: BoxFit.fill,
-                    )),
-                Positioned(
-                    top: 109.h,
-                    left: 20.w,
-                    child: Text(
-                      '${title}',
-                      style: subtitlestyle(
-                          size: 20, color: text2, weight: FontWeight.bold),
-                    )),
+                Container(height: 90, width: _mwidth,color: Color(0xFFAAC8C8),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Color(0xFFFAF7EF),
+                      ),
+                      child: SizedBox(
+                          width: 366.w,
+                          height: 160.h,
+                          child: Image.asset(
+                            '${image0}',
+                            fit: BoxFit.fill,
+                          )
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
-            SizedBox(
-              height: 24.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            SizedBox(height:20.h),
+            //header name, num of story, filter, sorting
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width/2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 25.w,
-                      ),
-                      Text(
-                        '24개의 토리',
-                        style: subtitlestyle(size: 14, color: text1),
-                      ),
-                    ],
-                  ),
+                //header name
+                Row(
+                  children: [
+                    SizedBox(width: 24,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${title}',
+                          style: subtitlestyle(
+                              size: 20, color: text2, weight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8,),
+                        Text(
+                          '총 24개의 토리',
+                          style: subtitlestyle(size: 14, color: text2),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                //필터, 정렬기능
-                Container(
-                  width: (MediaQuery.of(context).size.width/2-22).w,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      DropdownButton<String>(
-                        // Step 3.
-                        value: dropdownValue,
-                        // Step 4.
-                        items: <String>['All', 'open', 'lock']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          );
-                        }).toList(),
-                        // Step 5.
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownValue = newValue!;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                //num of story
 
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // filter
+                    Container(
+                      width: MediaQuery.of(context).size.width/2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 25.w,
+                          ),
+                          Text('filter'),
+                        ],
+                      ),
+                    ),
+                    // 정렬기능
+                    Container(
+                      width: (MediaQuery.of(context).size.width/2-22).w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              // Step 3.
+                              value: dropdownValue,
+                              // Step 4.
+                              items: <String>['All', '인기순', '댓글순']
+                                  .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                );
+                              }).toList(),
+                              // Step 5.
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  ],
+                ),
               ],
             ),
+            Divider(),
             SizedBox(
-              height: 20.h,
+              height: 10.h,
             ),
             //short long 등 스토리 리스트
             Container(
-              height: 550.h,
+              height: 470.h,
               child: ListView(
                 scrollDirection: Axis.vertical,
                 physics: ClampingScrollPhysics(),
@@ -137,11 +173,11 @@ class _MainPage extends State<MainPage> {
                 //   Column(
                   children:<Widget>[
                     mainPageListTile(title1, subtitle1, cate1, image1,type1),
-                    mainPageListTile(title1, subtitle1, 'lock', image1,type2),
-                    mainPageListTile(title1, subtitle1, 'lock', image1,type2),
+                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
+                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
                     mainPageListTile(title1, subtitle1, cate1, image1,type1),
-                    mainPageListTile(title1, subtitle1, 'lock', image1,type2),
-                    mainPageListTile(title1, subtitle1, 'lock', image1,type2),
+                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
+                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
                   // ListView.builder(
                   //     itemBuilder: itemBuilder
                   // )
@@ -209,7 +245,7 @@ Widget _categoryMark(String category) {
         height: 21.h,
         child: Padding(
           padding: const EdgeInsets.all(2.0),
-          child: Text(' ${category}'),
+          child: Text('${category}'),
         ),
       );
   }
@@ -248,19 +284,6 @@ Widget mainPageListTile(
                               fit: BoxFit.fill,
                             ), // Text(key['title']),
                           ),
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(30),
-                          //   ),
-                          //   margin: EdgeInsets.only(left: 4),
-                          //   width: 86,
-                          //   height: 86,
-                          //   // color: SubPrimary,
-                          //   child: Image.asset(
-                          //     image,
-                          //     fit: BoxFit.fill,
-                          //   ),
-                          // ),
                           Positioned(
                             left: 0,
                             top: 8.h,
