@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tory/colors.dart';
 import 'package:tory/splash_screen.dart';
+import 'package:tory/story_page1.dart';
 import 'package:tory/story_page.dart';
 import 'package:tory/end_page.dart';
 import 'package:tory/vote.dart';
@@ -18,6 +19,7 @@ import 'components.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'search_page.dart';
 import 'noticepage.dart';
 
 void main() async {
@@ -71,6 +73,9 @@ class MyApp extends StatelessWidget {
             page: () => SplashScreen(),
           ),
           GetPage(
+            name: '/search',
+            page: () => SearchPage(),
+          ),
             name: '/mainpage',
             page: () => MainPage(),
           ),
