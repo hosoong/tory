@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tory/colors.dart';
@@ -19,8 +18,8 @@ var type1 = 'long';
 var type2 = 'short';
 var subtitle1 = '모두 네게 줄게\n썸녀에게 고백하기';
 var image1 = 'assets/love1.png';
-var image0='assets/love2.png';
-var title='사랑해... 사랑한다고... 고백모음';
+var image0 = 'assets/love2.png';
+var title = '사랑해... 사랑한다고... 고백모음';
 //
 
 //TODO: SliverAppBar 해야함
@@ -28,6 +27,7 @@ class MainPage extends StatefulWidget {
   @override
   _MainPage createState() => _MainPage();
 }
+
 class _MainPage extends State<MainPage> {
   String dropdownValue = 'All';
 
@@ -58,7 +58,11 @@ class _MainPage extends State<MainPage> {
           children: [
             Stack(
               children: [
-                Container(height: 90, width: _mwidth,color: Color(0xFFAAC8C8),),
+                Container(
+                  height: 90,
+                  width: _mwidth,
+                  color: Color(0xFFAAC8C8),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -73,14 +77,13 @@ class _MainPage extends State<MainPage> {
                           child: Image.asset(
                             '${image0}',
                             fit: BoxFit.fill,
-                          )
-                      ),
+                          )),
                     ),
                   ],
                 ),
               ],
             ),
-            SizedBox(height:20.h),
+            SizedBox(height: 20.h),
             //header name, num of story, filter, sorting
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,16 +91,22 @@ class _MainPage extends State<MainPage> {
                 //header name
                 Row(
                   children: [
-                    SizedBox(width: 24,),
+                    SizedBox(
+                      width: 24,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           '${title}',
                           style: subtitlestyle(
-                              size: 20, color: text_on_background, weight: FontWeight.bold),
+                              size: 20,
+                              color: text_on_background,
+                              weight: FontWeight.bold),
                         ),
-                        SizedBox(height: 8,),
+                        SizedBox(
+                          height: 8,
+                        ),
                         Text(
                           '총 24개의 토리',
                           style: subtitlestyle(size: 14, color: text_on_color),
@@ -113,7 +122,7 @@ class _MainPage extends State<MainPage> {
                   children: [
                     // filter
                     Container(
-                      width: MediaQuery.of(context).size.width/2,
+                      width: MediaQuery.of(context).size.width / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -126,7 +135,7 @@ class _MainPage extends State<MainPage> {
                     ),
                     // 정렬기능
                     Container(
-                      width: (MediaQuery.of(context).size.width/2-22).w,
+                      width: (MediaQuery.of(context).size.width / 2 - 22).w,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -135,8 +144,11 @@ class _MainPage extends State<MainPage> {
                               // Step 3.
                               value: dropdownValue,
                               // Step 4.
-                              items: <String>['All', '인기순', '댓글순']
-                                  .map<DropdownMenuItem<String>>((String value) {
+                              items: <String>[
+                                'All',
+                                '인기순',
+                                '댓글순'
+                              ].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(
@@ -156,7 +168,6 @@ class _MainPage extends State<MainPage> {
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ],
@@ -173,18 +184,18 @@ class _MainPage extends State<MainPage> {
                 physics: ClampingScrollPhysics(),
                 // children: [
                 //   Column(
-                  children:<Widget>[
-                    mainPageListTile(title1, subtitle1, cate1, image1,type1),
-                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
-                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
-                    mainPageListTile(title1, subtitle1, cate1, image1,type1),
-                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
-                    mainPageListTile(title1, subtitle1, cate2, image1,type2),
+                children: <Widget>[
+                  mainPageListTile(title1, subtitle1, cate1, image1, type1),
+                  mainPageListTile(title1, subtitle1, cate2, image1, type2),
+                  mainPageListTile(title1, subtitle1, cate2, image1, type2),
+                  mainPageListTile(title1, subtitle1, cate1, image1, type1),
+                  mainPageListTile(title1, subtitle1, cate2, image1, type2),
+                  mainPageListTile(title1, subtitle1, cate2, image1, type2),
                   // ListView.builder(
                   //     itemBuilder: itemBuilder
                   // )
-                // ],),
-              ],
+                  // ],),
+                ],
               ),
             ),
           ],
@@ -199,11 +210,10 @@ class _MainPage extends State<MainPage> {
       //   backgroundColor: Colors.pink,
       // ),
     );
-
   }
 }
 
-_sortingFilter(BuildContext context){
+_sortingFilter(BuildContext context) {
   showDialog(
       context: context,
       //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
@@ -211,8 +221,8 @@ _sortingFilter(BuildContext context){
       builder: (BuildContext context) {
         return AlertDialog(
           // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           //Dialog Main Title
           title: Column(
             children: <Widget>[
@@ -256,7 +266,7 @@ Widget _categoryMark(String category) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),
-        color: Primary,
+        color: Primary600,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -273,122 +283,122 @@ Widget _categoryMark(String category) {
         child: Text(' ${category}'),
       ),
     );
-  }
-  else {
-    return
-      Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          color: tertiary,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 3,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        width: 35.w,
-        height: 21.h,
-        child: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Text('${category}'),
-        ),
-      );
+  } else {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
+        color: tertiary600,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      width: 35.w,
+      height: 21.h,
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Text('${category}'),
+      ),
+    );
   }
 }
 
 //listTile
 Widget mainPageListTile(
-      String title, String subtitle, String category, String image,String type) {
-    var textid; // image,title,subtitle,textid
+    String title, String subtitle, String category, String image, String type) {
+  var textid; // image,title,subtitle,textid
 
-    return InkWell(
-      child: Container(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 4.h,
-            ),
-            Stack(
-              children: [
-                Container(
-                  // margin: EdgeInsets.fromLTRB(20, 4, 0, 24),
-                  width: 368.w,
-                  height: 91.h,
-                  color: background3,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 4.w,
-                      ),
-                      Stack(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(left: 5),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4.0),
-                              child: Image.asset(
-                                image,
-                                fit: BoxFit.fill,
-                              ), // Text(key['title']),
-                            ),
+  return InkWell(
+    child: Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 4.h,
+          ),
+          Stack(
+            children: [
+              Container(
+                // margin: EdgeInsets.fromLTRB(20, 4, 0, 24),
+                width: 368.w,
+                height: 91.h,
+                color: background3,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 4.w,
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 5),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4.0),
+                            child: Image.asset(
+                              image,
+                              fit: BoxFit.fill,
+                            ), // Text(key['title']),
                           ),
-                          Positioned(
-                            left: 0,
-                            top: 8.h,
-                            child: _categoryMark(category),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 16.w,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '[${type}] ${title}',
-                            style: subtitlestyle(
-                                size: 16, color: text_on_background, weight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Text(
-                            '${subtitle}',
-                            style: subtitlestyle(size: 14, color: text_on_color),
-                          ),
-                          Text(
-                            '#sdfs #fsdf',
-                            style: subtitlestyle(size: 12, color: Primary),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          top: 8.h,
+                          child: _categoryMark(category),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 16.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '[${type}] ${title}',
+                          style: subtitlestyle(
+                              size: 16,
+                              color: text_on_background,
+                              weight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Text(
+                          '${subtitle}',
+                          style: subtitlestyle(size: 14, color: text_on_color),
+                        ),
+                        Text(
+                          '#sdfs #fsdf',
+                          style: subtitlestyle(size: 12, color: Primary600),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                // Positioned(
-                //     right: 2,
-                //     bottom: 12,
-                //     child: Text('조짱',style: subtitlestyle(size: 12, color: text1),)
-                // ),
-              ],
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Divider(
-              thickness: 1, indent: 24.w, // empty space to the leading edge of divider.
-              endIndent: 24.w,
-            ),
-          ],
-        ),
+              ),
+              // Positioned(
+              //     right: 2,
+              //     bottom: 12,
+              //     child: Text('조짱',style: subtitlestyle(size: 12, color: text1),)
+              // ),
+            ],
+          ),
+          SizedBox(
+            height: 8.h,
+          ),
+          Divider(
+            thickness: 1,
+            indent: 24.w, // empty space to the leading edge of divider.
+            endIndent: 24.w,
+          ),
+        ],
       ),
-      onTap: (){
-        print('sdfasdfjellpo${category}');
-      },
-    );
-  }
-
+    ),
+    onTap: () {
+      print('sdfasdfjellpo${category}');
+    },
+  );
+}
