@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:tory/colors.dart';
 import 'package:tory/splash_screen.dart';
 import 'package:tory/story_page1.dart';
-import 'package:tory/story_page.dart';
 import 'package:tory/end_page.dart';
 import 'package:tory/vote.dart';
 import 'package:tory/end_page2.dart';
@@ -76,6 +75,7 @@ class MyApp extends StatelessWidget {
             name: '/search',
             page: () => SearchPage(),
           ),
+          GetPage(
             name: '/mainpage',
             page: () => MainPage(),
           ),
