@@ -191,3 +191,23 @@ OutlinedButton VoteButton(){
 //     ),
 //   );
 // }
+
+  BoxDecoration LeftSpeechBubbleContainer(Color color) {
+    return BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(32),
+                topRight: Radius.circular(32),
+                topLeft: Radius.circular(32)), //모서리를 둥글게
+          );
+  }
+
+    BoxDecoration RightSpeechBubbleContainer(Color color) {
+    return BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(32),
+                topRight: Radius.circular(32),
+                topLeft: Radius.circular(32)), //모서리를 둥글게
+          );
+  }
