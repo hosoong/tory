@@ -51,13 +51,13 @@ class _NoticePage extends State<NoticePage>
             title: Text(
               '알림',
               style: subtitlestyle(
-                  size: 20, color: text2, weight: FontWeight.bold),
+                  size: 20, color: text_on_color, weight: FontWeight.bold),
             ),
             elevation: 0,
             bottom: TabBar(
               tabs: tabs,
               labelStyle: subtitlestyle(
-                  size: 18, color: text2, weight: FontWeight.w800),
+                  size: 18, color: text_on_color, weight: FontWeight.w800),
             ),
             leading: IconButton(
               icon: Icon(
@@ -84,7 +84,7 @@ class _NoticePage extends State<NoticePage>
 
   //각 tab안에 들어갈 페이지
   Tory(String Tab) {
-    if(Tab == '나의 토리') {
+    if (Tab == '나의 토리') {
       return ListView(
         children: [
           toryTile(),
@@ -100,8 +100,7 @@ class _NoticePage extends State<NoticePage>
           toryTile(),
         ],
       );
-    }
-    else{
+    } else {
       return ListView(
         children: [
           newTory(),
@@ -115,39 +114,7 @@ class _NoticePage extends State<NoticePage>
   }
 
   //'나의 토리' 일 경우
-  toryTile(){
-    return Container(
-      padding: EdgeInsets.fromLTRB(48.w, 30.h, 28.w, 0.h),
-      child: InkWell(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('메인 텍스트',style: subtitlestyle(size: 16,weight: FontWeight.w700),),
-                Text('서브 텍스트',style: subtitlestyle(size: 14,weight: FontWeight.w400),),
-              ],
-            ),
-            Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: (){},
-                        icon: Icon(Icons.clear),
-                    ),
-                  ],
-                ),
-            ),
-          ],
-        ),
-        onTap: (){},
-      )
-    );
-  }
-  //'새로운 토리'일 경우
-  newTory() {
+  toryTile() {
     return Container(
         padding: EdgeInsets.fromLTRB(48.w, 30.h, 28.w, 0.h),
         child: InkWell(
@@ -157,10 +124,14 @@ class _NoticePage extends State<NoticePage>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('메인 텍스트',
-                    style: subtitlestyle(size: 16, weight: FontWeight.w700),),
-                  Text('서브 텍스트',
-                    style: subtitlestyle(size: 14, weight: FontWeight.w400),),
+                  Text(
+                    '메인 텍스트',
+                    style: subtitlestyle(size: 16, weight: FontWeight.w700),
+                  ),
+                  Text(
+                    '서브 텍스트',
+                    style: subtitlestyle(size: 14, weight: FontWeight.w400),
+                  ),
                 ],
               ),
               Expanded(
@@ -177,7 +148,44 @@ class _NoticePage extends State<NoticePage>
             ],
           ),
           onTap: () {},
-        )
-    );
+        ));
+  }
+
+  //'새로운 토리'일 경우
+  newTory() {
+    return Container(
+        padding: EdgeInsets.fromLTRB(48.w, 30.h, 28.w, 0.h),
+        child: InkWell(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '메인 텍스트',
+                    style: subtitlestyle(size: 16, weight: FontWeight.w700),
+                  ),
+                  Text(
+                    '서브 텍스트',
+                    style: subtitlestyle(size: 14, weight: FontWeight.w400),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.clear),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          onTap: () {},
+        ));
   }
 }
