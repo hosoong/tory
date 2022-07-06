@@ -17,7 +17,7 @@ class CastFilter extends StatefulWidget {
 }
 
 class CastFilterState extends State<CastFilter> {
-  SelectedSexAgeController _sexagecontroller = Get.find<SelectedSexAgeController>();
+  // SelectedSexAgeController _sexagecontroller = Get.find<SelectedSexAgeController>();
 
 
   @override
@@ -90,16 +90,16 @@ class CastFilterState extends State<CastFilter> {
         selected: _sexselected[i],
         label: Text(_sexoptions[i],
           style: TextStyle(
-              color: _sexselected[i] ? Primary600 : text_on_background , fontSize: 12),),
+              color: _sexselected[i] ? Primary600 : text_on_color , fontSize: 12),),
         // avatar: FlutterLogo(),
         elevation: 0,
         pressElevation: 1,
         backgroundColor: Colors.white,
         selectedColor: Colors.white,
         onSelected: (bool selected) {
-          setState(() {
+          // setState(() {
             _sexselected[i] = selected;
-          });
+          // });
 
           // _sexagecontroller.putSexAge(_sexselected[i].toString());
 
@@ -112,7 +112,7 @@ class CastFilterState extends State<CastFilter> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 side: BorderSide(
-                  color: _sexselected[i] ? Primary600 : text_on_background,
+                  color: _sexselected[i] ? Primary600 : text_on_color,
                 )),
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0),
@@ -142,7 +142,7 @@ class CastFilterState extends State<CastFilter> {
         selected: _ageselected[i],
         label: Text(_ageoptions[i],
             style: TextStyle(
-                color: _ageselected[i] ? Primary600 : text_on_background, fontSize: 12)),
+                color: _ageselected[i] ? Primary600 : text_on_color, fontSize: 12)),
         // avatar: FlutterLogo(),
         elevation: 0,
         pressElevation: 1,
@@ -161,7 +161,7 @@ class CastFilterState extends State<CastFilter> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 side: BorderSide(
-                  color: _ageselected[i] ? Primary600 : text_on_background,
+                  color: _ageselected[i] ? Primary600 : text_on_color,
                 )),
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0),
@@ -253,13 +253,13 @@ class CastFilterState extends State<CastFilter> {
                       minWidth: 167,
                       color: SubPrimary200,
                       onPressed: (){},
-                      child: Text('취소', style: subtitlestyle(size:18,color:text_on_button,weight:FontWeight.bold),)),
+                      child: Text('취소', style: button2(color:text_on_button),)),
                   FlatButton(
                       height:64,
                       minWidth: 167,
                       color: SubPrimary300,
                       onPressed: (){},
-                      child: Text('적용',style: subtitlestyle(size:18,color:text_on_button,weight:FontWeight.bold),)),
+                      child: Text('적용',style: button2(color:text_on_button),)),
                 ],
               ),
             ],
