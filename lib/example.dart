@@ -31,38 +31,7 @@ class CastFilterState extends State<CastFilter> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              '필터',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Text(
-              '성별',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 30,
-              child: _buildSexChips(),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              '나이',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 30,
-              child: _buildAgeChips(),
-            ),
+
           ],
         ),
       ),
@@ -252,32 +221,22 @@ class CastFilterState extends State<CastFilter> {
                       height:64,
                       minWidth: 167,
                       color: SubPrimary200,
-                      onPressed: (){},
+                      onPressed: (){
+                        Get.back();
+                      },
                       child: Text('취소', style: button2(color:text_on_button),)),
                   FlatButton(
                       height:64,
                       minWidth: 167,
                       color: SubPrimary300,
-                      onPressed: (){},
+                      onPressed: (){
+                        Get.back();
+                      },
                       child: Text('적용',style: button2(color:text_on_button),)),
                 ],
               ),
             ],
           );
         });
-  }
-}
-
-class SelectedSexAgeController extends GetxController {
-  var selectedRides = [].obs;
-
-  void putSexAge(String value) {
-    if (selectedRides.contains(value)) {
-      selectedRides.remove(value);
-      selectedRides.sort();
-    } else {
-      selectedRides.add(value);
-      selectedRides.sort();
-    }
   }
 }
