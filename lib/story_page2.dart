@@ -57,12 +57,12 @@ class StoryPage2 extends StatelessWidget {
                       Text(
                         "이 때!\n그에게서 걸려온 전화....\n",
                         textAlign: TextAlign.center,
-                        style: bodystyle,
+                        style: body1(),
                       ),
                       Text(
                         "\"OO아 이따가 집 앞으로 나올래?\n할 말이 있어..\"",
                         textAlign: TextAlign.center,
-                        style: bodystyle,
+                        style: body1(),
                       ),
                       SizedBox(
                         height: 37.h,
