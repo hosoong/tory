@@ -6,7 +6,7 @@ OutlinedButton AgeandGenderButton(String text) {
   bool isClicked = false;
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
-      minimumSize: Size(47, 27),
+      minimumSize: const Size(47, 27),
       // maximumSize: Size(47, 27),
       primary: isClicked ? Primary600 : Colors.black,
       surfaceTintColor: Colors.blue,
@@ -17,7 +17,7 @@ OutlinedButton AgeandGenderButton(String text) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 12,
       ),
     ),
@@ -31,16 +31,16 @@ OutlinedButton AgeandGenderButton(String text) {
 OutlinedButton SearchChip(String text) {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
-      minimumSize: Size(47, 27),
+      minimumSize: const Size(47, 27),
       primary: Colors.black,
-      side: BorderSide(
+      side: const BorderSide(
         color: Colors.black,
         width: 1,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 12,
       ),
     ),
@@ -53,22 +53,22 @@ OutlinedButton FilterButton() {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
       // minimumSize: Size(59, 27),
-      fixedSize: Size(75, 27),
+      fixedSize: const Size(75, 27),
       // maximumSize: Size(75, 27),
       primary: Primary600,
-      side: BorderSide(
+      side: const BorderSide(
         color: Primary600,
         width: 1,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(2),
       ),
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 12,
       ),
     ),
     child: Row(
-      children: [
+      children: const [
         Icon(
           Icons.filter_list,
           color: Primary600,
@@ -96,13 +96,13 @@ SizedBox ThumbupButton() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(2),
         ),
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           color: Colors.black,
           fontSize: 12,
         ),
       ),
       child: Row(
-        children: [
+        children: const [
           Icon(
             Icons.thumb_up,
             color: Colors.black,
@@ -131,13 +131,13 @@ SizedBox ThumbdownButton() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(2),
         ),
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           color: Colors.black,
           fontSize: 12,
         ),
       ),
       child: Row(
-        children: [
+        children: const [
           Icon(
             Icons.thumb_up,
             color: Colors.black,
@@ -158,16 +158,16 @@ OutlinedButton WatchEndingButton() {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
       primary: Colors.black,
-      fixedSize: Size(80, 29),
+      fixedSize: const Size(80, 29),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(2),
       ),
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         color: Colors.black,
         fontSize: 12,
       ),
     ),
-    child: Text("결말보기"),
+    child: const Text("결말보기"),
     onPressed: () {},
   );
 }
@@ -179,12 +179,12 @@ OutlinedButton VoteButton() {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(2),
       ),
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         color: Colors.black,
         fontSize: 12,
       ),
     ),
-    child: Text("투표 (22)"),
+    child: const Text("투표 (22)"),
     onPressed: () {},
   );
 }
@@ -205,8 +205,8 @@ OutlinedButton VoteButton() {
   BoxDecoration LeftSpeechBubbleContainer(Color color) {
     return BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(32),
+            borderRadius: const BorderRadius.only(
+                bottomRight: const Radius.circular(32),
                 topRight: Radius.circular(32),
                 topLeft: Radius.circular(32)), //모서리를 둥글게
           );
@@ -215,9 +215,9 @@ OutlinedButton VoteButton() {
     BoxDecoration RightSpeechBubbleContainer(Color color) {
     return BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(32),
-                topRight: Radius.circular(32),
+            borderRadius: const BorderRadius.only(
+                bottomLeft: const Radius.circular(32),
+                topRight: const Radius.circular(32),
                 topLeft: Radius.circular(32)), //모서리를 둥글게
           );
   }
