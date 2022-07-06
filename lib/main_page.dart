@@ -1,300 +1,392 @@
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:tory/colors.dart';
 import 'package:tory/text_style.dart';
-import 'colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ActorFilterEntry {
-  const ActorFilterEntry(this.name, this.initials);
-  final String name;
-  final String initials;
-}
+import 'components.dart';
 
-class CastFilter extends StatefulWidget {
-  const CastFilter({Key? key}) : super(key: key);
+var _mwidth;
+var _mheight;
 
+//remove
+var title1 = '숨겨왔던 나의 수줍은 마음';
+var cate1 = 'open';
+var cate2 = 'lock';
+var type1 = 'long';
+var type2 = 'short';
+var subtitle1 = '모두 네게 줄게\n썸녀에게 고백하기';
+var image1 = 'assets/love1.png';
+var image0='assets/love2.png';
+var title='사랑해... 사랑한다고... 고백모음';
+//
+
+//TODO: SliverAppBar 해야함
+class MainPage extends StatefulWidget {
   @override
-  State createState() => CastFilterState();
+  _MainPage createState() => _MainPage();
 }
+class _MainPage extends State<MainPage> {
+  String dropdownValue = 'All';
 
-class CastFilterState extends State<CastFilter> {
-  SelectedSexAgeController _sexagecontroller =
-      Get.find<SelectedSexAgeController>();
-
-  @override
   Widget build(BuildContext context) {
+    _mwidth = MediaQuery.of(context).size.width;
+    _mheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Woolha.com Flutter Tutorial'),
+        backgroundColor: Color(0xFFAAC8C8),
+        elevation: 0,
+        leadingWidth: 81,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Get.toNamed('/');
+          },
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
+      body: Container(
+        //헤더 이미지랑 헤더 타이
+        color: background3,
+        width: MediaQuery.of(context).size.width.w,
+        height: MediaQuery.of(context).size.height.h,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              '필터',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          children: [
+            Stack(
+              children: [
+                Container(height: 90, width: _mwidth,color: Color(0xFFAAC8C8),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Color(0xFFFAF7EF),
+                      ),
+                      child: SizedBox(
+                          width: 366.w,
+                          height: 160.h,
+                          child: Image.asset(
+                            '${image0}',
+                            fit: BoxFit.fill,
+                          )
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
+            SizedBox(height:20.h),
+            //header name, num of story, filter, sorting
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //header name
+                Row(
+                  children: [
+                    SizedBox(width: 24,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${title}',
+                          style: headline2(color: text_on_color),
+                        ),
+                        SizedBox(height: 8,),
+                        Text(
+                          '총 24개의 토리',
+                          style: body4(color: text_on_color),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                //num of story
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // filter
+                    Container(
+                      width: MediaQuery.of(context).size.width/2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 25.w,
+                          ),
+                          FilterButton(),
+                        ],
+                      ),
+                    ),
+                    // 정렬기능
+                    Container(
+                      width: (MediaQuery.of(context).size.width/2-22).w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              // Step 3.
+                              value: dropdownValue,
+                              // Step 4.
+                              items: <String>['All', '인기순', '댓글순']
+                                  .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                );
+                              }).toList(),
+                              // Step 5.
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  ],
+                ),
+              ],
+            ),
+            Divider(),
             SizedBox(
-              height: 16,
+              height: 10.h,
             ),
-            Text(
-              '성별',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 10,
-            ),
+            //short long 등 스토리 리스트
             Container(
-              height: 30,
-              child: _buildSexChips(),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              '나이',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 30,
-              child: _buildAgeChips(),
+              height: 470.h,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                physics: ClampingScrollPhysics(),
+                // children: [
+                //   Column(
+                children:<Widget>[
+                  mainPageListTile(title1, subtitle1, cate1, image1,type1),
+                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
+                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
+                  mainPageListTile(title1, subtitle1, cate1, image1,type1),
+                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
+                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
+                  // ListView.builder(
+                  //     itemBuilder: itemBuilder
+                  // )
+                  // ],),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _sexAgeSortingFilter(context);
-        },
-        label: const Text('좋아요'),
-        icon: const Icon(Icons.thumb_up),
-        backgroundColor: Colors.pink,
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     _sortingFilter(context);
+      //   },
+      //   label: const Text('좋아요'),
+      //   icon: const Icon(Icons.thumb_up),
+      //   backgroundColor: Colors.pink,
+      // ),
     );
+
   }
+}
 
-  List<String> _sexoptions = ['여자', '남자'];
-  List<String> _ageoptions = ['10대', '20대', '30대', '40대', '50대 +'];
-  List<bool> _ageselected = [false, false, false, false, false];
-  List<bool> _sexselected = [false, false];
-
-  Widget _buildSexChips() {
-    List<Widget> sexchips = [];
-
-    for (int i = 0; i < _sexoptions.length; i++) {
-      ChoiceChip sexchoiceChip = ChoiceChip(
-        selected: _sexselected[i],
-        label: Text(
-          _sexoptions[i],
-          style: TextStyle(
-              color: _sexselected[i] ? Primary600 : text_on_background,
-              fontSize: 12),
-        ),
-        // avatar: FlutterLogo(),
-        elevation: 0,
-        pressElevation: 1,
-        backgroundColor: Colors.white,
-        selectedColor: Colors.white,
-        onSelected: (bool selected) {
-          setState(() {
-            _sexselected[i] = selected;
-          });
-
-          // _sexagecontroller.putSexAge(_sexselected[i].toString());
-        },
-      );
-
-      sexchips.add(Row(
-        children: [
-          Material(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-                side: BorderSide(
-                  color: _sexselected[i] ? Primary600 : text_on_background,
-                )),
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0),
-                child: sexchoiceChip),
+_sortingFilter(BuildContext context){
+  showDialog(
+      context: context,
+      //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0)),
+          //Dialog Main Title
+          title: Column(
+            children: <Widget>[
+              new Text("Dialog Title"),
+            ],
           ),
-          SizedBox(
-            width: 6,
-          ),
-        ],
-      ));
-    }
-
-    return Container(
-      child: ListView(
-        // This next line does the trick.
-        scrollDirection: Axis.horizontal,
-        children: sexchips,
-      ),
-    );
-  }
-
-  Widget _buildAgeChips() {
-    List<Widget> agechips = [];
-
-    for (int i = 0; i < _ageoptions.length; i++) {
-      ChoiceChip agechoiceChip = ChoiceChip(
-        selected: _ageselected[i],
-        label: Text(_ageoptions[i],
-            style: TextStyle(
-                color: _ageselected[i] ? Primary600 : text_on_background,
-                fontSize: 12)),
-        // avatar: FlutterLogo(),
-        elevation: 0,
-        pressElevation: 1,
-        backgroundColor: Colors.white,
-        selectedColor: Colors.white,
-        onSelected: (bool selected) {
-          setState(() {
-            _ageselected[i] = selected;
-          });
-        },
-      );
-
-      agechips.add(Row(
-        children: [
-          Material(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-                side: BorderSide(
-                  color: _ageselected[i] ? Primary600 : text_on_background,
-                )),
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0),
-                child: agechoiceChip),
-          ),
-          SizedBox(
-            width: 6,
-          ),
-        ],
-      ));
-    }
-
-    return Container(
-      child: ListView(
-        // This next line does the trick.
-        scrollDirection: Axis.horizontal,
-        children: agechips,
-      ),
-    );
-  }
-
-  _sexAgeSortingFilter(BuildContext context) {
-    showDialog(
-        context: context,
-        //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            // insetPadding: EdgeInsets.zero,
-            buttonPadding: EdgeInsets.zero,
-            // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
-            //Dialog Main Title
-            // title: Column(
-            //   children: <Widget>[
-            //     new Text("Dialog Title"),
-            //   ],
-            // ),
-            //
-            content: Container(
-              height: 186,
-              // width: MediaQuery.of(context).size.width,
-              width: 334,
-              child: Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        '필터',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        '성별',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 30,
-                        child: _buildSexChips(),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        '나이',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 30,
-                        child: _buildAgeChips(),
-                      ),
-                    ],
-                  )),
-            ),
-            actions: <Widget>[
-              Row(
-                children: [
-                  FlatButton(
-                      height: 64,
-                      minWidth: 167,
-                      color: SubPrimary200,
-                      onPressed: () {},
-                      child: Text(
-                        '취소',
-                        style: subtitlestyle(
-                            size: 18,
-                            color: text_on_button,
-                            weight: FontWeight.bold),
-                      )),
-                  FlatButton(
-                      height: 64,
-                      minWidth: 167,
-                      color: SubPrimary300,
-                      onPressed: () {},
-                      child: Text(
-                        '적용',
-                        style: subtitlestyle(
-                            size: 18,
-                            color: text_on_button,
-                            weight: FontWeight.bold),
-                      )),
-                ],
+          //
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Dialog Content",
               ),
             ],
-          );
-        });
+          ),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("확인"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      });
+}
+
+void createData() {
+  final usercol =
+  FirebaseFirestore.instance.collection("users").doc("userkey1");
+  usercol.set({
+    "username": "abc",
+    "age": 5,
+  });
+}
+
+//open/lock 별 구분 컨테이너
+Widget _categoryMark(String category) {
+  if (category == 'open') {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
+        color: Primary600,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      width: 40.w,
+      height: 21.h,
+      child: Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: Text(' ${category}'),
+      ),
+    );
+  }
+  else {
+    return
+      Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(2),
+          color: tertiary100,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 3,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        width: 35.w,
+        height: 21.h,
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Text('${category}'),
+        ),
+      );
   }
 }
 
-class SelectedSexAgeController extends GetxController {
-  var selectedRides = [].obs;
+//listTile
+Widget mainPageListTile(
+    String title, String subtitle, String category, String image,String type) {
+  var textid; // image,title,subtitle,textid
 
-  void putSexAge(String value) {
-    if (selectedRides.contains(value)) {
-      selectedRides.remove(value);
-      selectedRides.sort();
-    } else {
-      selectedRides.add(value);
-      selectedRides.sort();
-    }
-  }
+  return InkWell(
+    child: Container(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 4.h,
+          ),
+          Stack(
+            children: [
+              Container(
+                // margin: EdgeInsets.fromLTRB(20, 4, 0, 24),
+                width: 368.w,
+                height: 91.h,
+                color: background3,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 4.w,
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 5),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4.0),
+                            child: Image.asset(
+                              image,
+                              fit: BoxFit.fill,
+                            ), // Text(key['title']),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          top: 8.h,
+                          child: _categoryMark(category),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 16.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '[${type}] ${title}',
+                          style: headline5(color: text_on_color),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Text(
+                          '${subtitle}',
+                          style: button3(color: text_on_color),
+                        ),
+                        Text(
+                          '#sdfs #fsdf',
+                          style: button5( color: SubPrimary700),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              // Positioned(
+              //     right: 2,
+              //     bottom: 12,
+              //     child: Text('조짱',style: subtitlestyle(size: 12, color: text1),)
+              // ),
+            ],
+          ),
+          SizedBox(
+            height: 8.h,
+          ),
+          Divider(
+            thickness: 1, indent: 24.w, // empty space to the leading edge of divider.
+            endIndent: 24.w,
+          ),
+        ],
+      ),
+    ),
+    onTap: (){
+      print('sdfasdfjellpo${category}');
+    },
+  );
 }
+

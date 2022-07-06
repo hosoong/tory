@@ -10,7 +10,7 @@ import 'package:tory/end_page3.dart';
 import 'package:tory/story_page2.dart';
 import 'firebase_options.dart';
 
-import 'mainpage.dart';
+import 'main_page.dart';
 import 'home.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,8 +18,9 @@ import 'components.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'my_page.dart';
 import 'search_page.dart';
-import 'noticepage.dart';
+import 'notice_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -98,6 +99,18 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/vote',
             page: () => VotePage(),
+          ),
+          GetPage(
+            name: '/noticepage',
+            page: () => NoticePage(),
+          ),
+          GetPage(
+            name: '/mainpage',
+            page: () => MainPage(),
+          ),
+          GetPage(
+            name: '/mypage',
+            page: () => MyPage(),
           ),
         ],
       ),

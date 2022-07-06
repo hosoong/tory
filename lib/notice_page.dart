@@ -50,12 +50,12 @@ class _NoticePage extends State<NoticePage>
           appBar: AppBar(
             title: Text(
               '알림',
-              style: headline2( color: text_on_background),
+              style: headline2(color: text_on_color),
             ),
             elevation: 0,
             bottom: TabBar(
               tabs: tabs,
-              labelStyle: headline3( color: text_on_background),
+              labelStyle: headline3(color: text_on_color),
             ),
             leading: IconButton(
               icon: Icon(
@@ -82,7 +82,7 @@ class _NoticePage extends State<NoticePage>
 
   //각 tab안에 들어갈 페이지
   Tory(String Tab) {
-    if(Tab == '나의 토리') {
+    if (Tab == '나의 토리') {
       return ListView(
         children: [
           toryTile(),
@@ -98,8 +98,7 @@ class _NoticePage extends State<NoticePage>
           toryTile(),
         ],
       );
-    }
-    else{
+    } else {
       return ListView(
         children: [
           newTory(),
@@ -113,39 +112,7 @@ class _NoticePage extends State<NoticePage>
   }
 
   //'나의 토리' 일 경우
-  toryTile(){
-    return Container(
-      padding: EdgeInsets.fromLTRB(48.w, 30.h, 28.w, 0.h),
-      child: InkWell(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('메인 텍스트',style: headline5(color: text_on_color)),
-                Text('서브 텍스트',style: body4(color: text_on_color),),
-              ],
-            ),
-            Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: (){},
-                        icon: Icon(Icons.clear),
-                    ),
-                  ],
-                ),
-            ),
-          ],
-        ),
-        onTap: (){},
-      )
-    );
-  }
-  //'새로운 토리'일 경우
-  newTory() {
+  toryTile() {
     return Container(
         padding: EdgeInsets.fromLTRB(48.w, 30.h, 28.w, 0.h),
         child: InkWell(
@@ -155,10 +122,11 @@ class _NoticePage extends State<NoticePage>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('메인 텍스트',
-                    style: headline5(color: text_on_color),),
-                  Text('서브 텍스트',
-                    style: body4(color: text_on_color),),
+                  Text('메인 텍스트', style: headline5(color: text_on_color)),
+                  Text(
+                    '서브 텍스트',
+                    style: body4(color: text_on_color),
+                  ),
                 ],
               ),
               Expanded(
@@ -175,7 +143,44 @@ class _NoticePage extends State<NoticePage>
             ],
           ),
           onTap: () {},
-        )
-    );
+        ));
+  }
+
+  //'새로운 토리'일 경우
+  newTory() {
+    return Container(
+        padding: EdgeInsets.fromLTRB(48.w, 30.h, 28.w, 0.h),
+        child: InkWell(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '메인 텍스트',
+                    style: headline5(color: text_on_color),
+                  ),
+                  Text(
+                    '서브 텍스트',
+                    style: body4(color: text_on_color),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.clear),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          onTap: () {},
+        ));
   }
 }
