@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         title: 'my first app',
-        home: EndPage(),
+        home: HomePage(),
         initialRoute: '/splash',
         getPages: [
           GetPage(
