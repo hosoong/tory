@@ -37,7 +37,6 @@ const tertiary900 = Color(0xFF7B5212);
 const neutral = Color(0xFFFAF7EF);
 
 const text_on_color = Color(0xFF2F2F2F);
-const text_on_background = Color(0xFF1F1F1F);
 const text_on_button = Color(0xFFFFFFFF);
 
 //투명도 20프로?인 것 같은데 어케하지 ㅎㅎ
