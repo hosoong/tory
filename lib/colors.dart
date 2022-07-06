@@ -12,7 +12,7 @@ const Primary700 = Color(0xFF3F957E);
 const Primary800 = Color(0xFF38826C);
 const Primary900 = Color(0xFF2D5E48);
 
-const SubPrimary50 = Color(0xFFB0DEBD);
+const SubPrimary50 = Color(0xFFFBFEFB);
 const SubPrimary100 = Color(0xFFD8EFDC);
 const SubPrimary200 = Color(0xFFB0DEBD);
 const SubPrimary300 = Color(0xFF8AD1A9);
