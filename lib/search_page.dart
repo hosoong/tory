@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 import 'package:get/get.dart';
@@ -30,7 +29,8 @@ class SearchPageState extends State<SearchPage> {
             title: Row(
               children: [
                 IconButton(
-                    icon: Icon(
+                  visualDensity: VisualDensity(horizontal: -4.0, vertical: -4.0),
+                    icon: const Icon(
                       Icons.arrow_back_ios,
                       size: 20,
                     ),
@@ -49,7 +49,7 @@ class SearchPageState extends State<SearchPage> {
                         child: TextFormField(
                           focusNode: myFocusNode,
                           controller: searchTextController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                           ),
                         ),
@@ -59,9 +59,9 @@ class SearchPageState extends State<SearchPage> {
                             setState(() {});
                             // searchTextController.clear();
                           },
-                          child: Text(
+                          child: const Text(
                             "취소",
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
+                            style: const TextStyle(fontSize: 14, color: Colors.grey),
                           )),
                     ],
                   ),
@@ -70,20 +70,23 @@ class SearchPageState extends State<SearchPage> {
             )),
         body: 
         
-        searchTextController.text.isEmpty
-            ? NomalScreen()
-            : myFocusNode.hasFocus
-                ? FocusScreen()
-                : NoFocusScreen()
+        // searchTextController.text.isEmpty
+        //     ? 
+        // NomalScreen()
+        //     : myFocusNode.hasFocus
+        //         ? 
+                // FocusScreen()
+                // : 
+                AfterSearchScreen()
                 );
   }
 
-  Center NoFocusScreen() {
+  Center AfterSearchScreen() {
     return Center(
       child: Column(
         children: [
           Container(
-            child: Text(" not focus"),
+            child: const Text("not focus"),
           ),
         ],
       ),
@@ -92,11 +95,52 @@ class SearchPageState extends State<SearchPage> {
 
   Center FocusScreen() {
     return Center(
-      child: Column(
+      child: ListView(
         children: [
+          SizedBox(height: 20,),
           Container(
-            child: Text("focus"),
-          ),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+              decoration: LeftSpeechBubbleContainer(background3),
+              width: 366.w,
+              // height: 191.h,
+              alignment: Alignment.centerLeft,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:  [
+                  Row(
+                    children: [
+                      Text("최근 검색어"),
+                      Spacer(),
+                      TextButton(
+                        onPressed: (){},
+                        child: Text("전체 삭제",style: TextStyle(color: Colors.black),)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("스피치"),
+                      Spacer(),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.cancel_outlined, size: 12,))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("학업고민"),
+                      Spacer(),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.cancel_outlined, size: 12))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("엄마랑 싸우고 푸는 방법"),
+                      Spacer(),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.cancel_outlined, size: 12))
+                    ],
+                  ),
+                ],
+              )),
         ],
       ),
     );
@@ -107,10 +151,10 @@ class SearchPageState extends State<SearchPage> {
     return Center(
       child: ListView(
         children: [
-          Container(child: Text("Empty")),
+          SizedBox(height: 20,),
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 24),
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
               decoration: LeftSpeechBubbleContainer(background3),
               width: 366.w,
               height: 191.h,
@@ -118,7 +162,7 @@ class SearchPageState extends State<SearchPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text("인기 검색어"),
                   Text("1 스피치"),
                   Text("2 발표 준비"),
@@ -127,34 +171,67 @@ class SearchPageState extends State<SearchPage> {
               )),
           SizedBox(height: 20.h),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 24),
+            
+            margin: const EdgeInsets.symmetric(horizontal: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             width: 366.w,
             height: 728.h,
             decoration: LeftSpeechBubbleContainer(background3),
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 28.h),
-                Text("추천 카테고리"),
+                const Text("추천 카테고리",),
+                SizedBox(height: 20.h),
+                //TODO: 컴포넌트 나오면 빌더 형태로 다시 만들기
                 Expanded(
                   child: GridView(
-                          children: [
-                            Container(
-                              decoration: LeftSpeechBubbleContainer(background3),
-                              child: Stack(
-                  children: [
-                    Image.asset('assets/story1.png'),
-                    Text("연애백과사전"),
-                              ]
-                              ),
-                            )
-                          ],
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
                       childAspectRatio: 148 / 190, 
                       mainAxisSpacing: 20, //수평 Padding
                       crossAxisSpacing: 20, //수직 Padding
                     ),
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.symmetric(horizontal: 25.w),
+                              decoration: LeftSpeechBubbleContainer(background1),
+                              child: Stack(
+                  children: [
+                    Image.asset('assets/story1.png'),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.only(left: 12.0, bottom: 12.0),
+                          child: Text("연애백과사전"),
+                        ),
+                      ],
+                    ),
+                              ]
+                              ),
+                            ),
+                            Container(
+                              // margin: EdgeInsets.symmetric(horizontal: 25.w),
+                              decoration: LeftSpeechBubbleContainer(background1),
+                              child: Stack(
+                  children: [
+                    Image.asset('assets/story1.png'),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.only(left: 12.0, bottom: 12.0),
+                          child: Text("연애백과사전"),
+                        ),
+                      ],
+                    ),
+                              ]
+                              ),
+                            )
+                          ],
                       //item 의 반목문 항목 형성
                   ),
                 ),

@@ -96,34 +96,41 @@ class StoryPage2 extends StatelessWidget {
 
                                       Dialog(
                                         child: Container(
-                                          width: 339.w,
-                                          // height: 238.h,
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.all(32.0),
-                                                child: TextField(
-                                          // maxLength: 100,
-                                          maxLines: 3,
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            labelText: "OO님의 대답을 입력해주세요.",
-                                          ),
-                                        ),
-                                              ),
-                                        Center(
-                                          child:  ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                fixedSize: Size(274.w, 41.h),
-                                                primary: Primary),
-                                            onPressed: () {},
-                                            child: Text("완료"),
-                                          ),
-                                        ),
-                                        SizedBox(height: 32,)
-                                            ],
-                                        )),
+                                            width: 339.w,
+                                            // height: 238.h,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      32.0),
+                                                  child: TextField(
+                                                    // maxLength: 100,
+                                                    maxLines: 3,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      labelText:
+                                                          "OO님의 대답을 입력해주세요.",
+                                                    ),
+                                                  ),
+                                                ),
+                                                Center(
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                            fixedSize: Size(
+                                                                274.w, 41.h),
+                                                            primary:
+                                                                Primary600),
+                                                    onPressed: () {},
+                                                    child: Text("완료"),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 32,
+                                                )
+                                              ],
+                                            )),
                                       )
                                       // AlertDialog(
                                       //   content: TextField(

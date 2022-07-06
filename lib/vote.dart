@@ -9,6 +9,10 @@ class VotePage extends StatelessWidget {
 
   bool _value = false;
   int val = -1;
+  var image1 = 'assets/image11.jpg';
+  var image2 = 'assets/image13.png';
+  var image3 = 'assets/image14.png';
+  var image4 = 'assets/image12.png';
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +52,10 @@ class VotePage extends StatelessWidget {
                     Container(
                       width: 109,
                       height: 109,
-                      child: Image.network(
-                          "https://images.wallpapersden.com/image/download/purple-sunrise-4k-vaporwave_bGplZmiUmZqaraWkpJRmbmdlrWZlbWU.jpg"),
+                      child: Image.asset(
+                        image1,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
@@ -59,9 +65,24 @@ class VotePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            alignment:Alignment(-1.0, 0.0),
-                            margin: EdgeInsets.fromLTRB(10,0,0,10),
-                            child: Text('김토리'),
+                            alignment: Alignment(-1.0, 0.0),
+                            margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color.fromRGBO(246, 184, 127, 1),
+                                    width: 1.5,
+                                  ),
+                                  color: Colors.white,
+                                  borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(32.0),
+                                    topRight: const Radius.circular(32.0),
+                                    bottomLeft: const Radius.circular(32.0),
+                                    bottomRight: const Radius.circular(32.0),
+                                  )),
+                              child: Text('김토리'),
+                            ),
                           ),
                           Text(
                             '"아...나는 너랑 친구라고 생각했는데;;그런 거였으면 미안해"',
@@ -90,8 +111,10 @@ class VotePage extends StatelessWidget {
                     Container(
                       width: 109,
                       height: 109,
-                      child: Image.network(
-                          "https://images.wallpapersden.com/image/download/purple-sunrise-4k-vaporwave_bGplZmiUmZqaraWkpJRmbmdlrWZlbWU.jpg"),
+                      child: Image.asset(
+                        image2,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
@@ -101,9 +124,24 @@ class VotePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            alignment:Alignment(-1.0, 0.0),
-                            margin: EdgeInsets.fromLTRB(10,0,0,10),
-                            child: Text('김토리'),
+                            alignment: Alignment(-1.0, 0.0),
+                            margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color.fromRGBO(246, 184, 127, 1),
+                                    width: 1.5,
+                                  ),
+                                  color: Colors.white,
+                                  borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(32.0),
+                                    topRight: const Radius.circular(32.0),
+                                    bottomLeft: const Radius.circular(32.0),
+                                    bottomRight: const Radius.circular(32.0),
+                                  )),
+                              child: Text('김토리'),
+                            ),
                           ),
                           Text(
                             '"아...나는 너랑 친구라고 생각했는데;;그런 거였으면 미안해"',
@@ -112,7 +150,7 @@ class VotePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    BestSelection(),
+                    BestSelection2(),
                   ],
                 ),
               ),
@@ -132,8 +170,10 @@ class VotePage extends StatelessWidget {
                     Container(
                       width: 109,
                       height: 109,
-                      child: Image.network(
-                          "https://images.wallpapersden.com/image/download/purple-sunrise-4k-vaporwave_bGplZmiUmZqaraWkpJRmbmdlrWZlbWU.jpg"),
+                      child: Image.asset(
+                        image3,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
@@ -143,9 +183,24 @@ class VotePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            alignment:Alignment(-1.0, 0.0),
-                            margin: EdgeInsets.fromLTRB(10,0,0,10),
-                            child: Text('김토리'),
+                            alignment: Alignment(-1.0, 0.0),
+                            margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color.fromRGBO(246, 184, 127, 1),
+                                    width: 1.5,
+                                  ),
+                                  color: Colors.white,
+                                  borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(32.0),
+                                    topRight: const Radius.circular(32.0),
+                                    bottomLeft: const Radius.circular(32.0),
+                                    bottomRight: const Radius.circular(32.0),
+                                  )),
+                              child: Text('김토리'),
+                            ),
                           ),
                           Text(
                             '"아...나는 너랑 친구라고 생각했는데;;그런 거였으면 미안해"',
@@ -154,7 +209,7 @@ class VotePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    BestSelection(),
+                    BestSelection3(),
                   ],
                 ),
               ),
@@ -174,8 +229,10 @@ class VotePage extends StatelessWidget {
                     Container(
                       width: 109,
                       height: 109,
-                      child: Image.network(
-                          "https://images.wallpapersden.com/image/download/purple-sunrise-4k-vaporwave_bGplZmiUmZqaraWkpJRmbmdlrWZlbWU.jpg"),
+                      child: Image.asset(
+                        image4,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
@@ -185,9 +242,24 @@ class VotePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            alignment:Alignment(-1.0, 0.0),
-                            margin: EdgeInsets.fromLTRB(10,0,0,10),
-                            child: Text('김토리'),
+                            alignment: Alignment(-1.0, 0.0),
+                            margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color.fromRGBO(246, 184, 127, 1),
+                                    width: 1.5,
+                                  ),
+                                  color: Colors.white,
+                                  borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(32.0),
+                                    topRight: const Radius.circular(32.0),
+                                    bottomLeft: const Radius.circular(32.0),
+                                    bottomRight: const Radius.circular(32.0),
+                                  )),
+                              child: Text('김토리'),
+                            ),
                           ),
                           Text(
                             '"아...나는 너랑 친구라고 생각했는데;;그런 거였으면 미안해"',
@@ -196,13 +268,15 @@ class VotePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    BestSelection(),
+                    BestSelection4(),
                   ],
                 ),
               ),
               ElevatedButton(
-                  onPressed: (){},
-                  child: Text('Button'),
+                onPressed: () => {
+                  Get.toNamed('/endpage'),
+                },
+                child: Text('Button'),
               )
             ],
           ),
