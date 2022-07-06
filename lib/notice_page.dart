@@ -50,14 +50,12 @@ class _NoticePage extends State<NoticePage>
           appBar: AppBar(
             title: Text(
               '알림',
-              style: subtitlestyle(
-                  size: 20, color: text2, weight: FontWeight.bold),
+              style: headline2( color: text_on_background),
             ),
             elevation: 0,
             bottom: TabBar(
               tabs: tabs,
-              labelStyle: subtitlestyle(
-                  size: 18, color: text2, weight: FontWeight.w800),
+              labelStyle: headline3( color: text_on_background),
             ),
             leading: IconButton(
               icon: Icon(
@@ -125,8 +123,8 @@ class _NoticePage extends State<NoticePage>
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('메인 텍스트',style: subtitlestyle(size: 16,weight: FontWeight.w700),),
-                Text('서브 텍스트',style: subtitlestyle(size: 14,weight: FontWeight.w400),),
+                Text('메인 텍스트',style: headline5(color: text_on_color)),
+                Text('서브 텍스트',style: body4(color: text_on_color),),
               ],
             ),
             Expanded(
@@ -158,9 +156,9 @@ class _NoticePage extends State<NoticePage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('메인 텍스트',
-                    style: subtitlestyle(size: 16, weight: FontWeight.w700),),
+                    style: headline5(color: text_on_color),),
                   Text('서브 텍스트',
-                    style: subtitlestyle(size: 14, weight: FontWeight.w400),),
+                    style: body4(color: text_on_color),),
                 ],
               ),
               Expanded(

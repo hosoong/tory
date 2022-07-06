@@ -94,13 +94,12 @@ class _MainPage extends State<MainPage> {
                       children: [
                         Text(
                           '${title}',
-                          style: subtitlestyle(
-                              size: 20, color: text_on_background, weight: FontWeight.bold),
+                          style: headline2(color: text_on_background),
                         ),
                         SizedBox(height: 8,),
                         Text(
                           '총 24개의 토리',
-                          style: subtitlestyle(size: 14, color: text_on_color),
+                          style: body4(color: text_on_color),
                         ),
                       ],
                     ),
@@ -256,7 +255,7 @@ Widget _categoryMark(String category) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),
-        color: Primary,
+        color: Primary600,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -279,7 +278,7 @@ Widget _categoryMark(String category) {
       Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(2),
-          color: tertiary,
+          color: tertiary100,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -350,19 +349,18 @@ Widget mainPageListTile(
                         children: [
                           Text(
                             '[${type}] ${title}',
-                            style: subtitlestyle(
-                                size: 16, color: text_on_background, weight: FontWeight.bold),
+                            style: headline5(color: text_on_background),
                           ),
                           SizedBox(
                             height: 10.h,
                           ),
                           Text(
                             '${subtitle}',
-                            style: subtitlestyle(size: 14, color: text_on_color),
+                            style: button3(color: text_on_color),
                           ),
                           Text(
                             '#sdfs #fsdf',
-                            style: subtitlestyle(size: 12, color: Primary),
+                            style: button5( color: SubPrimary700),
                           ),
                         ],
                       ),
