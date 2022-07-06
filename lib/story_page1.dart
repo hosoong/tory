@@ -34,7 +34,7 @@ class StoryPage extends StatelessWidget {
                   child: Text(
                     '\"오래전부터 좋아하는 ㅁㅁㅁ와 나는 지금 썸을 타고 있다. \n내가 생각하기에는 이건 분명... 썸이다. \n영일대까지 가서 저녁을 먹었다~ \n대박대박!~~~ 밤 산책도 몇번 같이 했다. \n빨리 사귀고 싶어 ㅠㅠ 어떡하지?? \n얼른 고백해버리고 싶은데... \n방법을 모르겠어! 난 뚝딱이란 말이야..\"',
                     textAlign: TextAlign.center,
-                    style: bodystyle,
+                    style: body1(),
                   )),
             ),
             SizedBox(height: 200.h),
