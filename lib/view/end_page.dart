@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tory/colors.dart';
-import 'package:tory/text_style.dart';
+
+
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:bubble/bubble.dart';
 
 import 'dart:ui';
 import 'dart:math';
 
-class EndPage3 extends StatelessWidget {
-  EndPage3({Key? key}) : super(key: key);
-
-  var image3 = 'assets/image14.png';
+class EndPage extends StatelessWidget {
+  EndPage({Key? key}) : super(key: key);
+  final List<ChartData> chartData = [
+    ChartData('David', 30, Color.fromRGBO(9, 0, 136, 1)),
+    ChartData('Steve', 33, Color.fromRGBO(147, 0, 119, 1)),
+    ChartData('Jack', 34, Color.fromRGBO(228, 0, 124, 1)),
+    ChartData('Others', 52, Color.fromRGBO(255, 189, 57, 1))
+  ];
 
   static const styleSomebody = BubbleStyle(
     nip: BubbleNip.leftCenter,
@@ -32,6 +37,8 @@ class EndPage3 extends StatelessWidget {
     margin: BubbleEdges.only(top: 8, left: 50),
     alignment: Alignment.topRight,
   );
+
+  var image1 = 'assets/image11.jpg';
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +92,7 @@ class EndPage3 extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      image3,
+                      image1,
                       fit: BoxFit.fill,
                     ),
                     Container(
@@ -93,8 +100,8 @@ class EndPage3 extends StatelessWidget {
                       alignment: Alignment.bottomLeft,
                       width: 50,
                       child: Container(
-                        padding: EdgeInsets.all(5),
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                        padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             border: Border.all(
                               color: Color.fromRGBO(246, 184, 127, 1),
@@ -110,9 +117,77 @@ class EndPage3 extends StatelessWidget {
                         child: Text('김토리'),
                       ),
                     ),
-                    Text('"야야~너는 갑자기 무슨 그런 장난을 치냐 우리 사이에 무슨"'),
+                    Text('"아..나는 너랑 친구라고 생각했는데;; 그런 거였으면 미안해"'),
                   ],
                 ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                child: Text('투표 결과'),
+              ),
+              Stack(
+                children: [
+                  Container(
+                    //color: Colors.yellow,
+                    margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    decoration: BoxDecoration(
+                      //모서리 둥글게 만들기
+                      borderRadius: BorderRadius.circular(10),
+                      //그라데이션 효과 주기
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromRGBO(250, 247, 239, 1.0),
+                            Color.fromRGBO(226, 246, 238, 1.0)
+                          ]),
+                      //그림자 효과 주기
+                    ),
+                    child: SfCircularChart(series: <CircularSeries>[
+                      DoughnutSeries<ChartData, String>(
+                          dataSource: chartData,
+                          xValueMapper: (ChartData data, _) => data.x,
+                          yValueMapper: (ChartData data, _) => data.y,
+                          dataLabelMapper: (ChartData data, _) => data.x,
+                          dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              labelPosition: ChartDataLabelPosition.outside,
+                              // Renders background rectangle and fills it with series color
+                              useSeriesColor: true),
+                          explode: false,
+                          innerRadius: '73%',
+                          // Explode all the segments
+                          explodeAll: false)
+                    ]),
+                  ),
+                  Positioned(
+                    top: 110,
+                    left: 148,
+                    child: Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 3.0,
+                            spreadRadius: 3.0,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                        child: Text(
+                          '숨겨왔던 나의 수줍은..',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
@@ -120,7 +195,7 @@ class EndPage3 extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () => {
-                        Get.toNamed('/vote'),
+                        Get.toNamed('/endpage2'),
                       },
                       child: Text('완료'),
                     ),
@@ -138,4 +213,12 @@ class EndPage3 extends StatelessWidget {
           ),
         )));
   }
+}
+
+class ChartData {
+  ChartData(this.x, this.y, this.color);
+  final String x;
+  final double y;
+  final Color color;
+  //final String text;
 }
