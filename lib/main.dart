@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tory/module/colors.dart';
+import 'package:tory/view/detail_answer_page.dart';
 import 'package:tory/view/splash_screen.dart';
 import 'package:tory/view/story_page1.dart';
 import 'package:tory/view/end_page.dart';
@@ -23,6 +24,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'view/my_page.dart';
 import 'view/search_page.dart';
 import 'view/notice_page.dart';
+import 'view/vote_confirmation_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,14 +64,14 @@ class MyApp extends StatelessWidget {
             name: '/',
             page: () => HomePage(),
           ),
-          // GetPage(
-          //   name: '/story',
-          //   page: () => StoryPage(),
-          // ),
-          // GetPage(
-          //   name: '/story2',
-          //   page: () => StoryPage2(),
-          // ),
+          GetPage(
+            name: '/story',
+            page: () => StoryPage(),
+          ),
+          GetPage(
+            name: '/story2',
+            page: () => StoryPage2(),
+          ),
           GetPage(
             name: '/splash',
             page: () => SplashScreen(),
@@ -114,6 +116,15 @@ class MyApp extends StatelessWidget {
             name: '/mypage',
             page: () => MyPage(),
           ),
+          GetPage(
+            name: '/voteconfirm',
+            page: () => VoteConfirmPage(),
+          ),
+          GetPage(
+            name: '/detail',
+            page: () => DetailAnswerPage(),
+          ),
+          
         ],
       ),
     );
