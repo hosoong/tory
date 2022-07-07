@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tory/text_style.dart';
-import 'colors.dart';
+import 'package:tory/module/text_style.dart';
+import '../module/colors.dart';
 
 class ActorFilterEntry {
   const ActorFilterEntry(this.name, this.initials);
@@ -17,7 +17,7 @@ class CastFilter extends StatefulWidget {
 }
 
 class CastFilterState extends State<CastFilter> {
-  SelectedSexAgeController _sexagecontroller = Get.find<SelectedSexAgeController>();
+  // SelectedSexAgeController _sexagecontroller = Get.find<SelectedSexAgeController>();
 
 
   @override
@@ -31,38 +31,7 @@ class CastFilterState extends State<CastFilter> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              '필터',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Text(
-              '성별',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 30,
-              child: _buildSexChips(),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              '나이',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 30,
-              child: _buildAgeChips(),
-            ),
+
           ],
         ),
       ),
@@ -90,16 +59,16 @@ class CastFilterState extends State<CastFilter> {
         selected: _sexselected[i],
         label: Text(_sexoptions[i],
           style: TextStyle(
-              color: _sexselected[i] ? Primary600 : text_on_background , fontSize: 12),),
+              color: _sexselected[i] ? Primary600 : text_on_color , fontSize: 12),),
         // avatar: FlutterLogo(),
         elevation: 0,
         pressElevation: 1,
         backgroundColor: Colors.white,
         selectedColor: Colors.white,
         onSelected: (bool selected) {
-          setState(() {
+          // setState(() {
             _sexselected[i] = selected;
-          });
+          // });
 
           // _sexagecontroller.putSexAge(_sexselected[i].toString());
 
@@ -112,7 +81,7 @@ class CastFilterState extends State<CastFilter> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 side: BorderSide(
-                  color: _sexselected[i] ? Primary600 : text_on_background,
+                  color: _sexselected[i] ? Primary600 : text_on_color,
                 )),
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0),
@@ -142,7 +111,7 @@ class CastFilterState extends State<CastFilter> {
         selected: _ageselected[i],
         label: Text(_ageoptions[i],
             style: TextStyle(
-                color: _ageselected[i] ? Primary600 : text_on_background, fontSize: 12)),
+                color: _ageselected[i] ? Primary600 : text_on_color, fontSize: 12)),
         // avatar: FlutterLogo(),
         elevation: 0,
         pressElevation: 1,
@@ -161,7 +130,7 @@ class CastFilterState extends State<CastFilter> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
                 side: BorderSide(
-                  color: _ageselected[i] ? Primary600 : text_on_background,
+                  color: _ageselected[i] ? Primary600 : text_on_color,
                 )),
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0),
@@ -252,32 +221,22 @@ class CastFilterState extends State<CastFilter> {
                       height:64,
                       minWidth: 167,
                       color: SubPrimary200,
-                      onPressed: (){},
-                      child: Text('취소', style: subtitlestyle(size:18,color:text_on_button,weight:FontWeight.bold),)),
+                      onPressed: (){
+                        Get.back();
+                      },
+                      child: Text('취소', style: button2(color:text_on_button),)),
                   FlatButton(
                       height:64,
                       minWidth: 167,
                       color: SubPrimary300,
-                      onPressed: (){},
-                      child: Text('적용',style: subtitlestyle(size:18,color:text_on_button,weight:FontWeight.bold),)),
+                      onPressed: (){
+                        Get.back();
+                      },
+                      child: Text('적용',style: button2(color:text_on_button),)),
                 ],
               ),
             ],
           );
         });
-  }
-}
-
-class SelectedSexAgeController extends GetxController {
-  var selectedRides = [].obs;
-
-  void putSexAge(String value) {
-    if (selectedRides.contains(value)) {
-      selectedRides.remove(value);
-      selectedRides.sort();
-    } else {
-      selectedRides.add(value);
-      selectedRides.sort();
-    }
   }
 }

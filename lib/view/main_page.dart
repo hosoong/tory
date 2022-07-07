@@ -1,12 +1,12 @@
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:tory/colors.dart';
-import 'package:tory/text_style.dart';
+import 'package:tory/module/colors.dart';
+import 'package:tory/module/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'components.dart';
+import '../module/components.dart';
 
 var _mwidth;
 var _mheight;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'dart:ui';
-import 'package:tory/best_selection.dart';
+import 'package:tory/module/best_selection.dart';
 
 class VotePage extends StatelessWidget {
   VotePage({Key? key}) : super(key: key);
