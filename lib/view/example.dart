@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tory/text_style.dart';
-import 'colors.dart';
+import 'package:tory/module/text_style.dart';
+import '../module/colors.dart';
 
 class ActorFilterEntry {
   const ActorFilterEntry(this.name, this.initials);
