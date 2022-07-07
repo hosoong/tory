@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './colors.dart';
-import 'text_style.dart';
+import 'package:tory/module/text_style.dart';
+
+import './colors.dart';
+import 'package:get/get.dart';
 
 OutlinedButton AgeandGenderButton(String text) {
   bool isClicked = false;
@@ -205,15 +208,40 @@ OutlinedButton VoteButton() {
 //   );
 // }
 
-  BoxDecoration LeftSpeechBubbleContainer(Color color) {
-    return BoxDecoration(
-            color: color,
-            borderRadius: const BorderRadius.only(
-                bottomRight: const Radius.circular(32),
-                topRight: Radius.circular(32),
-                topLeft: Radius.circular(32)), //모서리를 둥글게
-          );
-  }
+BoxDecoration LeftSpeechBubbleContainer(Color color) {
+  return BoxDecoration(
+    color: color,
+    borderRadius: const BorderRadius.only(
+        bottomRight: const Radius.circular(32),
+        topRight: Radius.circular(32),
+        topLeft: Radius.circular(32)), //모서리를 둥글게
+  );
+}
+
+BoxDecoration RightSpeechBubbleContainer(Color color) {
+  return BoxDecoration(
+    color: color,
+    borderRadius: const BorderRadius.only(
+        bottomLeft: const Radius.circular(32),
+        topRight: const Radius.circular(32),
+        topLeft: Radius.circular(32)), //모서리를 둥글게
+  );
+}
+
+greenHeader() {
+  return Column(
+    children: [
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset('assets/left.png'),
+          Image.asset('assets/center.png'),
+          Image.asset('assets/right.png'),
+        ],
+      ),
+    ],
+  );
+}
 
     BoxDecoration RightSpeechBubbleContainer(Color color) {
     return BoxDecoration(
@@ -249,3 +277,29 @@ OutlinedButton VoteButton() {
       ),
     );
   }
+
+//TODO: greenHeader() 추가해서 써야함
+greenHeaderScaffold(String title, IconButton leadingIcon, IconButton actionIcon, Widget body) {
+  return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: leadingIcon,
+        title: Text(
+          title,
+          style: headline2(color: text_on_button),
+        ),
+        actions: [
+          actionIcon,
+        ],
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
+      extendBodyBehindAppBar: true,
+      body: Column(
+        children:[
+          greenHeader(),
+          body
+        ]
+      ),
+  );
+}
