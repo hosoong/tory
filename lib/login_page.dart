@@ -55,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                     Form(
                       key: _scaffoldKey2,
                       child: TextFormField(
+                        style: body3(color: line),
                         controller: mail_controller,
                         decoration: const InputDecoration(
                           hintText: "이메일",
@@ -71,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                     Form(
                       key: _scaffoldKey,
                       child: TextFormField(
+                        style: body3(color: line),
                         controller: pw_controller,
                         decoration: InputDecoration(
                           hintText: "비밀번호",
@@ -118,9 +120,6 @@ class _LoginPageState extends State<LoginPage> {
                   primary: Primary500,
                   onPrimary: Colors.white,
                   fixedSize: const Size(330, 64),
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
