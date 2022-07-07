@@ -78,7 +78,7 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
                 child: sexchoiceChip),
           ),
           SizedBox(
-            width: 6,
+            width: 10,
           ),
         ],
       ));
@@ -127,7 +127,7 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
                 child: agechoiceChip),
           ),
           SizedBox(
-            width: 6,
+            width: 10,
           ),
         ],
       ));
