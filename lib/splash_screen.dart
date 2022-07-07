@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:tory/home.dart';
-import 'package:tory/story_page1.dart';
+import 'package:tory/login_page.dart';
 import 'colors.dart';
 import 'search_page.dart';
 import 'text_style.dart';
@@ -18,7 +17,7 @@ class SplashScreen extends StatelessWidget{
           child: AnimatedSplashScreen(
             backgroundColor: background1,
             splash: 'assets/splash.png', duration: 1000,
-            nextScreen: SearchPage(),
+            nextScreen: LoginPage(),
             splashTransition: SplashTransition.fadeTransition,
             // pageTransitionType: PageTransitionType.fade,
             splashIconSize: 896.h,
