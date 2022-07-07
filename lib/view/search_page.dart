@@ -23,7 +23,6 @@ class SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final search_controller = Get.put(SearchController());
 
     return Scaffold(
         backgroundColor: background2,
@@ -77,7 +76,7 @@ class SearchPageState extends State<SearchPage> {
               ],
             )),
         body:
-
+        //TODO: 변수가 변하면 바로바로 화면이 바뀌게 구현해야함.
             searchTextController.text.isEmpty
                 ?
             NomalScreen()
@@ -85,7 +84,8 @@ class SearchPageState extends State<SearchPage> {
                     ?
             FocusScreen()
             :
-            AfterSearchScreen());
+            AfterSearchScreen()
+            );
   }
 
 //검색 결과 화ㄴ
@@ -359,10 +359,6 @@ class SearchPageState extends State<SearchPage> {
   }
 }
 
-class SearchController extends GetxController {
-  RxBool focusOn = false.obs;
-  RxBool textOn = false.obs;
-}
 
 Widget mainPageListTile(
     String title, String subtitle, String category, String image, String type) {
