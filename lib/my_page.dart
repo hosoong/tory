@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proste_bezier_curve/proste_bezier_curve.dart';
-import 'package:tory/module/text_style.dart';
+import 'package:tory/text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../module/colors.dart';
+import 'colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
 

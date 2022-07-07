@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import '../module/colors.dart';
+import 'package:tory/home.dart';
+import 'package:tory/story_page1.dart';
+import 'colors.dart';
 import 'search_page.dart';
+import 'text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 

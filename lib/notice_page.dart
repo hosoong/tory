@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tory/module/text_style.dart';
+import 'package:tory/text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../module/colors.dart';
+import 'colors.dart';
 
 class NoticePage extends StatefulWidget {
   const NoticePage({Key? key}) : super(key: key);

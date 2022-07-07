@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tory/module/colors.dart';
-import 'package:tory/module/text_style.dart';
+import 'package:tory/colors.dart';
+import 'package:tory/text_style.dart';
 
 class StoryPage2 extends StatelessWidget {
   const StoryPage2({Key? key}) : super(key: key);

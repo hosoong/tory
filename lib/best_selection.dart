@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:tory/controllers/best_selection_controller.dart';
+import 'package:tory/best_selection_controller.dart';
 import 'package:get/get.dart';
 
 class BestSelection extends StatelessWidget {

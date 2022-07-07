@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tory/module/colors.dart';
-import 'package:tory/module/text_style.dart';
+import 'package:tory/colors.dart';
+import 'package:tory/text_style.dart';
 import 'package:bubble/bubble.dart';
 
 import 'dart:ui';
 import 'dart:math';
 
-class EndPage3 extends StatelessWidget {
-  EndPage3({Key? key}) : super(key: key);
+class EndPage2 extends StatelessWidget {
+  EndPage2({Key? key}) : super(key: key);
 
-  var image3 = 'assets/image14.png';
+  var image2 = 'assets/image13.png';
 
   static const styleSomebody = BubbleStyle(
     nip: BubbleNip.leftCenter,
@@ -85,7 +85,7 @@ class EndPage3 extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      image3,
+                      image2,
                       fit: BoxFit.fill,
                     ),
                     Container(
@@ -93,8 +93,8 @@ class EndPage3 extends StatelessWidget {
                       alignment: Alignment.bottomLeft,
                       width: 50,
                       child: Container(
-                        padding: EdgeInsets.all(5),
                         margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                        padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             border: Border.all(
                               color: Color.fromRGBO(246, 184, 127, 1),
@@ -110,7 +110,7 @@ class EndPage3 extends StatelessWidget {
                         child: Text('김토리'),
                       ),
                     ),
-                    Text('"야야~너는 갑자기 무슨 그런 장난을 치냐 우리 사이에 무슨"'),
+                    Text('"나도 너를 운명이라고 생각했어..! 고마워 먼저 말해줘서"'),
                   ],
                 ),
               ),
@@ -120,7 +120,7 @@ class EndPage3 extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () => {
-                        Get.toNamed('/vote'),
+                        Get.toNamed('/endpage3'),
                       },
                       child: Text('완료'),
                     ),
@@ -128,7 +128,9 @@ class EndPage3 extends StatelessWidget {
                       width: 20,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => {
+                        Get.toNamed('/endpage3'),
+                      },
                       child: Text('다른 답변 구경가기'),
                     ),
                   ],

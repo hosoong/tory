@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../module/colors.dart';
+import 'colors.dart';
 import 'package:get/get.dart';
-import '../module/components.dart';
-import '../module/text_style.dart';
+import 'components.dart';
+import 'text_style.dart';
 
     String dropdownValue = 'All';
 
