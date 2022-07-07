@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import './colors.dart';
 import 'package:tory/module/text_style.dart';
 
 import './colors.dart';
@@ -86,25 +88,30 @@ OutlinedButton FilterButton() {
   );
 }
 
-SizedBox ThumbupButton() {
+Container ThumbupButton() {
   bool isClicked = false;
-  return SizedBox(
-    width: 64,
+  return Container(
+    
+    constraints: BoxConstraints(
+      minWidth: 40,
+      // maxWidth: 40,
+    ),
+    // width: 40,
     height: 29,
     child: OutlinedButton(
       style: OutlinedButton.styleFrom(
+        padding: EdgeInsets.all(6),
         // fixedSize: Size(58,29),
         primary: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(2),
         ),
-        textStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 12,
-        ),
+        textStyle: subtitle3(color: text_on_color)
       ),
       child: Row(
-        children: const [
+
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:  [
           Icon(
             Icons.thumb_up,
             color: Colors.black,
@@ -113,7 +120,7 @@ SizedBox ThumbupButton() {
           SizedBox(
             width: 4,
           ),
-          Text("22"),
+          Text("1333", style: subtitle3(color: text_on_color)),
         ],
       ),
       onPressed: () {},
@@ -124,7 +131,7 @@ SizedBox ThumbupButton() {
 SizedBox ThumbdownButton() {
   bool isClicked = false;
   return SizedBox(
-    width: 64,
+    // width: 64,
     height: 29,
     child: OutlinedButton(
       style: OutlinedButton.styleFrom(
@@ -133,22 +140,19 @@ SizedBox ThumbdownButton() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(2),
         ),
-        textStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 12,
-        ),
+        textStyle:subtitle3(color: text_on_color)
       ),
       child: Row(
-        children: const [
+        children:  [
           Icon(
-            Icons.thumb_up,
+            Icons.thumb_down_outlined,
             color: Colors.black,
             size: 12,
           ),
           SizedBox(
             width: 4,
           ),
-          Text("22"),
+          Text("22",style: subtitle3(color: text_on_color),),
         ],
       ),
       onPressed: () {},
@@ -238,6 +242,41 @@ greenHeader() {
     ],
   );
 }
+
+    BoxDecoration RightSpeechBubbleContainer(Color color) {
+    return BoxDecoration(
+            color: color,
+            borderRadius: const BorderRadius.only(
+                bottomLeft: const Radius.circular(32),
+                topRight: const Radius.circular(32),
+                topLeft: Radius.circular(32)), //모서리를 둥글게
+          );
+  }
+
+
+//카테고리 네임택
+  Widget categoryMark(String category) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
+        color: category=="참여형"? Primary600 : tertiary600,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      width: 40.w,
+      height: 21.h,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 1),
+        child: Text(' ${category}',style: subtitle4(color: text_on_color,)),
+      ),
+    );
+  }
 
 //TODO: greenHeader() 추가해서 써야함
 greenHeaderScaffold(String title, IconButton leadingIcon, IconButton actionIcon, Widget body) {
