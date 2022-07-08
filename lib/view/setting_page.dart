@@ -19,7 +19,7 @@ class SettingPage extends StatelessWidget {
           children: [
             Container(
               color: Colors.white,
-              height: 175,
+              height: 64,
               width: 414,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +31,7 @@ class SettingPage extends StatelessWidget {
                           width: 414,
                           height: 40,
                           margin: EdgeInsets.fromLTRB(24, 34, 0, 30),
-                          child: Text('알림 및 소리')
+                          child: Text('알림 및 소리'),
                       ),
                       onTap: (){},
                     ),

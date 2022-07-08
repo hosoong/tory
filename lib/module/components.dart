@@ -243,16 +243,6 @@ greenHeader() {
   );
 }
 
-    BoxDecoration RightSpeechBubbleContainer(Color color) {
-    return BoxDecoration(
-            color: color,
-            borderRadius: const BorderRadius.only(
-                bottomLeft: const Radius.circular(32),
-                topRight: const Radius.circular(32),
-                topLeft: Radius.circular(32)), //모서리를 둥글게
-          );
-  }
-
 
 //카테고리 네임택
   Widget categoryMark(String category) {

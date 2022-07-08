@@ -43,6 +43,7 @@ dependencies:
   bubble: ^1.2.1
   proste_bezier_curve:
   percent_indicator: ^4.0.1
+  draggable_home:
 
 dev_dependencies:
   flutter_test:
