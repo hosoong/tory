@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tory/module/text_style.dart';
 import '../module/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './example.dart';
 
 class ProfileModifyPage extends StatefulWidget {
@@ -78,7 +79,7 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
                 child: sexchoiceChip),
           ),
           SizedBox(
-            width: 6,
+            width: 10.w,
           ),
         ],
       ));
@@ -127,7 +128,7 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
                 child: agechoiceChip),
           ),
           SizedBox(
-            width: 6,
+            width: 10.w,
           ),
         ],
       ));
@@ -147,11 +148,11 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-          padding: EdgeInsets.fromLTRB(14, 0, 0, 0),
+          padding: EdgeInsets.fromLTRB(14.w, 0, 0, 0),
           icon: Icon(
             Icons.clear,
             color: text_on_button,
-            size: 24,
+            size: 24.w,
           ),
           onPressed: () {
             Get.back();
@@ -165,7 +166,7 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
           TextButton(
             style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsets>(
-                  EdgeInsets.fromLTRB(0, 3, 14, 0)),
+                  EdgeInsets.fromLTRB(0, 3.h, 14.w, 0)),
             ),
             child: Text(
               '확인',
@@ -217,8 +218,8 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
         child: Padding(
             padding: EdgeInsets.symmetric(vertical: 1),
           child: Container(
-            width: 68,
-            height: 28,
+            width: 68.w,
+            height: 28.h,
             child: TextButton(
               child: Text('중복확인',style: subtitle3(color: Primary300),),
               onPressed: (){
@@ -237,23 +238,23 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
   profileTextForm(BuildContext context) {
     bool isvalidIcon = false;
     return Container(
-      width: 342,
+      width: 342.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('이메일',style: headline5(color: text_on_color),),
           Text('21900119@handong',style: body3(color: text_on_color),),
-          SizedBox(height: 4,),
+          SizedBox(height: 4.h,),
           Text('닉네임',style: headline5(color: text_on_color),),
           Row(
             children: [
               Container(
-                width: 238,
+                width: 238.w,
                 child: Form(
                   key: _nickNameKey,
                   child: TextFormField(
                     controller: nicknameController,
-                      cursorWidth:4,
+                      cursorWidth:4.w,
                     decoration: const InputDecoration(
                       contentPadding: EdgeInsets.symmetric(vertical: 0), //Change this value to custom as you like
                       isDense: true,
@@ -269,11 +270,11 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
                   ),
                 ),
               ),
-              SizedBox(width: 16),
+              SizedBox(width: 16.w),
               sameButton(),
             ],
           ),
-          SizedBox(height: 4,),
+          SizedBox(height: 4.h,),
           Text('비밀번호',style: headline5(color: text_on_color),),
           Form(
             key: _passwordKey,
@@ -293,7 +294,7 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
               },
             ),
           ),
-          SizedBox(height: 4,),
+          SizedBox(height: 4.h,),
           Text('비밀번호 확인',style: headline5(color: text_on_color),),
           Focus(
             child: Form(
@@ -327,31 +328,31 @@ class _ProfileModifyPageState extends State<ProfileModifyPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(
-                    height: 16,
+                    height: 16.h,
                   ),
                   Text(
                     '성별',
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 16.h,
                   ),
                   Container(
-                    height: 30,
+                    height: 30.h,
                     child: _buildSexChips(),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 30.h,
                   ),
                   Text(
                     '연령대',
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 16.h,
                   ),
                   Container(
-                    height: 30,
+                    height: 30.h,
                     child: _buildAgeChips(),
                   ),
                 ],
