@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:proste_bezier_curve/proste_bezier_curve.dart';
 import 'package:draggable_home/draggable_home.dart';
 import 'package:get/get.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-void main() => runApp( HomePage());
+void main() => runApp(AnswerPage());
 
-class HomePage extends StatelessWidget{
+class AnswerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,22 +14,29 @@ class HomePage extends StatelessWidget{
           primarySwatch: Colors.teal,
           canvasColor: Colors.transparent,
         ),
-        home: AnswerPage()
-    );
+        home: AnswerStatePage());
   }
 }
 
-class AnswerPage extends StatefulWidget {
+class AnswerStatePage extends StatefulWidget {
   @override
-  _AnswerPage createState() => _AnswerPage();
+  _AnswerStatePage createState() => _AnswerStatePage();
 }
 
-class _AnswerPage extends State<AnswerPage> {
+class _AnswerStatePage extends State<AnswerStatePage> {
   String dropdownValue = 'All';
-  Color _iconcolor= Colors.black;
+  Color _iconcolor = Colors.black;
   bool iscolor = true;
 
-  void _modalBottomSheetMenu(){
+  final TextEditingController _textController = new TextEditingController();
+  Widget _changedTextWidget = Container();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _modalBottomSheetMenu() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -47,11 +55,7 @@ class _AnswerPage extends State<AnswerPage> {
             Container(
               child: Row(
                 children: [
-                  IconButton(
-                      icon: Icon(Icons.close),
-                      onPressed: () {
-                      }
-                  ),
+                  IconButton(icon: Icon(Icons.close), onPressed: () {}),
                   Text('답글'),
                 ],
               ),
@@ -63,17 +67,29 @@ class _AnswerPage extends State<AnswerPage> {
                 children: [
                   Row(
                     children: [
-                      Text('지연님\t',style: TextStyle(fontSize: 16),),
-                      Text('여성,20대',style: TextStyle(fontSize: 10),),
+                      Text(
+                        '지연님\t',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '여성,20대',
+                        style: TextStyle(fontSize: 10),
+                      ),
                     ],
                   ),
                   Column(
                     children: [
-                      SizedBox(height: 2,),
+                      SizedBox(
+                        height: 2,
+                      ),
                       Text("나 오늘부터 수영 배우려구,,,너라는 바다에 빠져 죽지 않기 위해"),
-                      SizedBox(height: 20,),
-                      Align(alignment: Alignment.topLeft,
-                        child: Text("2022.06.30 18:07"),),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("2022.06.30 18:07"),
+                      ),
                       Container(
                         child: Row(
                           children: [
@@ -85,18 +101,26 @@ class _AnswerPage extends State<AnswerPage> {
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 //alignment: Alignment.centerLeft
                               ),
-                              child: Text("답글 3",style: TextStyle(fontSize: 12),),
+                              child: Text(
+                                "답글 3",
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ),
-                            SizedBox(width: 10,),
+                            SizedBox(
+                              width: 10,
+                            ),
                             OutlinedButton(
                               child: const Text('결말보기'),
                               onPressed: () {},
                               style: OutlinedButton.styleFrom(
                                   minimumSize: Size.zero,
                                   padding: EdgeInsets.all(5),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap),
                             ),
-                            SizedBox(width: 70,),
+                            SizedBox(
+                              width: 70,
+                            ),
                             TextButton.icon(
                               style: TextButton.styleFrom(
                                 minimumSize: Size.zero,
@@ -108,14 +132,19 @@ class _AnswerPage extends State<AnswerPage> {
                                     style: BorderStyle.solid),
                               ),
                               icon: Icon(Icons.thumb_up_alt_outlined),
-                              label: Text('2399',style: TextStyle(fontSize: 12),),
+                              label: Text(
+                                '2399',
+                                style: TextStyle(fontSize: 12),
+                              ),
                               onPressed: () {},
                             ),
-                            SizedBox(width: 10,),
+                            SizedBox(
+                              width: 10,
+                            ),
                             TextButton.icon(
                               style: TextButton.styleFrom(
                                 minimumSize: Size.zero,
-                                padding: EdgeInsets.fromLTRB(5, 5,5,5),
+                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 side: BorderSide(
                                     color: Colors.blue,
@@ -123,7 +152,10 @@ class _AnswerPage extends State<AnswerPage> {
                                     style: BorderStyle.solid),
                               ),
                               icon: Icon(Icons.thumb_down_alt_outlined),
-                              label: Text('99',style: TextStyle(fontSize: 12),),
+                              label: Text(
+                                '99',
+                                style: TextStyle(fontSize: 12),
+                              ),
                               onPressed: () {},
                             ),
                           ],
@@ -131,16 +163,13 @@ class _AnswerPage extends State<AnswerPage> {
                       ),
                     ],
                   ),
-                  Divider(thickness: 1,color: Colors.black,),
-                  ListTile(
-                    title: Row(
-                      children: [
-                        Text('ㄴ지연님\t',style: TextStyle(fontSize: 16),),
-                        Text('2022.06.30 18:07',style: TextStyle(fontSize: 10),),
-                      ],
-                    ),
-                    subtitle: Text("와 정말 무대를 뒤집어 놓으셨다. 역시 선배님,,,"),
-                    //trailing: Text("와 정말 무대를 뒤집어 놓으셨다. 역시 선배님"),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.black,
+                  ),
+                  listCommentView(),
+                  TextField(
+                    decoration: InputDecoration(labelText: '댓글'),
                   ),
                 ],
               ),
@@ -270,7 +299,12 @@ class _AnswerPage extends State<AnswerPage> {
           child: Row(
             children: [
               IconButton(
-                icon: iscolor? Icon(Icons.circle,color: Colors.white,) : Icon(Icons.check_circle,color: Color(0xFF49BBA3)),
+                icon: iscolor
+                    ? Icon(
+                        Icons.circle,
+                        color: Colors.white,
+                      )
+                    : Icon(Icons.check_circle, color: Color(0xFF49BBA3)),
                 onPressed: () {
                   print(_iconcolor);
                   setState(() {
@@ -280,8 +314,9 @@ class _AnswerPage extends State<AnswerPage> {
                 },
               ),
               Text('내 답변 고정'),
-
-              SizedBox(width: 70,),
+              SizedBox(
+                width: 70,
+              ),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   // minimumSize: Size(59, 27),
@@ -314,7 +349,9 @@ class _AnswerPage extends State<AnswerPage> {
                 ),
                 onPressed: () {},
               ),
-              SizedBox(width: 20,),
+              SizedBox(
+                width: 20,
+              ),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -368,7 +405,7 @@ class _AnswerPage extends State<AnswerPage> {
             top: 150,
             right: 1,
             left: 1,
-            child:Column(
+            child: Column(
               children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 10, 60, 20),
@@ -389,14 +426,13 @@ class _AnswerPage extends State<AnswerPage> {
                     " 나 오늘부터 수영 배우려구,,, 너라는 바다에 빠져 죽지 않기 위해",
                   ),
                 ),
-
               ],
             ),
           ),
           Positioned(
             bottom: 170,
             left: 40,
-            child:Container(
+            child: Container(
               //margin: EdgeInsets.fromLTRB(0, 20, 250, 20),
               alignment: Alignment.bottomLeft,
               width: 50,
@@ -442,17 +478,29 @@ class _AnswerPage extends State<AnswerPage> {
           ),
           title: Row(
             children: [
-              Text('지연님\t',style: TextStyle(fontSize: 16),),
-              Text('여성,20대',style: TextStyle(fontSize: 10),),
+              Text(
+                '지연님\t',
+                style: TextStyle(fontSize: 16),
+              ),
+              Text(
+                '여성,20대',
+                style: TextStyle(fontSize: 10),
+              ),
             ],
           ),
           subtitle: Column(
             children: [
-              SizedBox(height: 2,),
+              SizedBox(
+                height: 2,
+              ),
               Text("나 오늘부터 수영 배우려구,,,너라는 바다에 빠져 죽지 않기 위해"),
-              SizedBox(height: 20,),
-              Align(alignment: Alignment.topLeft,
-                child: Text("2022.06.30 18:07"),),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text("2022.06.30 18:07"),
+              ),
               Container(
                 child: Row(
                   children: [
@@ -464,9 +512,14 @@ class _AnswerPage extends State<AnswerPage> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         //alignment: Alignment.centerLeft
                       ),
-                      child: Text("답글 3",style: TextStyle(fontSize: 12),),
+                      child: Text(
+                        "답글 3",
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     OutlinedButton(
                       child: const Text('결말보기'),
                       onPressed: () {},
@@ -475,7 +528,9 @@ class _AnswerPage extends State<AnswerPage> {
                           padding: EdgeInsets.all(5),
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                     ),
-                    SizedBox(width: 70,),
+                    SizedBox(
+                      width: 70,
+                    ),
                     TextButton.icon(
                       style: TextButton.styleFrom(
                         minimumSize: Size.zero,
@@ -487,14 +542,19 @@ class _AnswerPage extends State<AnswerPage> {
                             style: BorderStyle.solid),
                       ),
                       icon: Icon(Icons.thumb_up_alt_outlined),
-                      label: Text('2399',style: TextStyle(fontSize: 12),),
+                      label: Text(
+                        '2399',
+                        style: TextStyle(fontSize: 12),
+                      ),
                       onPressed: () {},
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     TextButton.icon(
                       style: TextButton.styleFrom(
                         minimumSize: Size.zero,
-                        padding: EdgeInsets.fromLTRB(5, 5,5,5),
+                        padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         side: BorderSide(
                             color: Colors.blue,
@@ -502,7 +562,10 @@ class _AnswerPage extends State<AnswerPage> {
                             style: BorderStyle.solid),
                       ),
                       icon: Icon(Icons.thumb_down_alt_outlined),
-                      label: Text('99',style: TextStyle(fontSize: 12),),
+                      label: Text(
+                        '99',
+                        style: TextStyle(fontSize: 12),
+                      ),
                       onPressed: () {},
                     ),
                   ],
@@ -524,6 +587,143 @@ class _AnswerPage extends State<AnswerPage> {
       ),
     );
   }
+
+  ListView listCommentView() {
+    return ListView.builder(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      shrinkWrap: true,
+      itemBuilder: (context, index) => ListTile(
+        title: Row(
+          children: [
+            Text(
+              'ㄴ지연님\t',
+              style: TextStyle(fontSize: 16),
+            ),
+            Text(
+              '2022.06.30 18:07',
+              style: TextStyle(fontSize: 10),
+            ),
+          ],
+        ),
+        subtitle: Text("와 정말 무대를 뒤집어 놓으셨다. 역시 선배님,,,"),
+        //trailing: Text("와 정말 무대를 뒤집어 놓으셨다. 역시 선배님"),
+      ),
+    );
+  }
+
+  // Widget _CommentApply() {
+  //   return Container(
+  //     child: Column(children: [
+  //       Row(
+  //         children: [
+  //           Flexible(
+  //             child: TextField(
+  //               controller: _textController,
+  //               //onSubmitted: sendMsg,
+  //               //onChanged: checkText,
+  //               onSubmitted: (text) {
+  //                 sendMsg(text);
+  //               },
+  //               onChanged: (text) {
+  //                 checkText(text);
+  //               },
+  //               decoration: InputDecoration(
+  //                 // labelText: '텍스트 입력',
+  //                 hintText: '텍스트를 입력해주세요',
+  //                 border: OutlineInputBorder(), //외곽선
+  //                 suffixIcon: _textController.text.isNotEmpty //엑스버튼
+  //                     ? Container(
+  //                         child: IconButton(
+  //                           alignment: Alignment.centerRight,
+  //                           icon: Icon(
+  //                             Icons.cancel,
+  //                           ),
+  //                           onPressed: () {
+  //                             _textController.clear();
+  //                             setState(() {});
+  //                           },
+  //                         ),
+  //                       )
+  //                     : null,
+  //               ),
+  //             ),
+  //           ),
+  //           GestureDetector(
+  //             onTap: () {
+  //               sendMsg(_textController.text);
+  //             },
+  //             child: Container(
+  //               decoration: BoxDecoration(
+  //                 border: Border.all(
+  //                   color: Colors.white,
+  //                 ),
+  //                 borderRadius: BorderRadius.circular(8.0),
+  //                 color: Colors.lightBlue[200],
+  //               ),
+  //               margin: const EdgeInsets.symmetric(
+  //                 horizontal: 4.0,
+  //               ),
+  //               child: Container(
+  //                 height: 50,
+  //                 width: 50,
+  //                 alignment: Alignment.center,
+  //                 child: Text(
+  //                   'SEND',
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //       Expanded(
+  //         child: Container(
+  //           margin: const EdgeInsets.only(
+  //             top: 30,
+  //             left: 30,
+  //             right: 30,
+  //             bottom: 500,
+  //           ),
+  //           alignment: Alignment.center,
+  //           color: Colors.yellow[200],
+  //           child: _changedTextWidget,
+  //         ),
+  //       ),
+  //     ]),
+  //   );
+  // }
+
+  // void sendMsg(String text) {
+  //   _textController.clear();
+  //   Fluttertoast.showToast(
+  //     msg: text,
+  //     toastLength: Toast.LENGTH_LONG,
+  //     // gravity: ToastGravity.CENTER,  //위치(default 는 아래)
+  //   );
+  // }
+
+  // void checkText(String text) {
+  //   _changedTextWidget = Container(
+  //     child: Text.rich(
+  //       //Text.rich 와 TextSpan 을 사용하여 다양한 스타일의 텍스트를 한줄에 표시할 수 있게 하는 위젯
+  //       TextSpan(
+  //         text: '=> ', //기본 스타일의 텍스트 (default text style)
+  //         children: [
+  //           TextSpan(
+  //             //TextSpan 위젯을 이용하여 다양한 스타일의 텍스트 사용 가능
+  //             text: '$text',
+  //             style: TextStyle(
+  //               fontSize: 20,
+  //               color: Colors.redAccent,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  //   setState(() {}); //setState 를 사용하여 화면 다시 그려줌
+  // }
 }
 
 class CustomSelfClipper2 extends CustomClipper<Path> {
