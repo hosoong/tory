@@ -192,19 +192,6 @@ OutlinedButton VoteButton() {
   );
 }
 
-// Container openChip(){
-//   return Container(
-//     padding: EdgeInsets.only(left: 10, right: 10),
-//     child: Row(
-//       children: [
-//         Text("open"),
-//         SizedBox(width: 5),
-//         Icon(Icons.check, color: Colors.green),
-//       ],
-//     ),
-//   );
-// }
-
   BoxDecoration LeftSpeechBubbleContainer(Color color) {
     return BoxDecoration(
             color: color,
@@ -225,13 +212,12 @@ OutlinedButton VoteButton() {
           );
   }
 
-
 //카테고리 네임택
   Widget categoryMark(String category) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2),
-        color: category=="참여형"? Primary600 : tertiary600,
+        color: category=="참여형"? Primary200 : tertiary300,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
