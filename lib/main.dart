@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tory/module/colors.dart';
 import 'package:tory/view/detail_answer_page.dart';
+import 'package:tory/view/login_page.dart';
 import 'package:tory/view/splash_screen.dart';
 import 'package:tory/view/story_page1.dart';
 import 'package:tory/view/end_page.dart';
@@ -123,6 +124,10 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/detail',
             page: () => DetailAnswerPage(),
+          ), 
+          GetPage(
+            name: '/login',
+            page: () => LoginPage(),
           ),
           
         ],
