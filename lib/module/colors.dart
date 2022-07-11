@@ -38,8 +38,10 @@ const neutral = Color(0xFFFAF7EF);
 
 const text_on_color = Color(0xFF2F2F2F);
 const text_on_button = Color(0xFFFFFFFF);
+const text_grey1 = Color(0xFF515151);
+const text_grey2 = Color(0xFF848484);
 
-//투명도 20프로?인 것 같은데 어케하지 ㅎㅎ
+
 const layer_blur = Color.fromRGBO(0, 0, 0, 0.2);
 
 
@@ -52,3 +54,4 @@ const background3 = Color(0xFFFFFFFF);
 
 const fill = Color(0xFFDDDDDD);
 const line = Color(0xFFA7A7A7);
+
