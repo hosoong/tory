@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tory/controllers/login_controller.dart';
 import 'package:tory/module/colors.dart';
 import 'package:tory/module/text_style.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,6 +14,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+    final LoginController controller = Get.put(LoginController());
+
+
   TextEditingController mail_controller = TextEditingController();
   TextEditingController pw_controller = TextEditingController();
 
@@ -19,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _scaffoldKey2 =  GlobalKey<FormState>();
   
   bool obscureBool = true;
+  
   @override
   void dispose() {
     mail_controller.dispose();
@@ -167,9 +174,26 @@ class _LoginPageState extends State<LoginPage> {
                   )),
                 ],
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Center(
-                child: IconButton(onPressed: (){}, icon: const Icon(Icons.face)),
+                child: IconButton(
+                    onPressed: () {
+                      print("clicked");
+                      controller.signInWithGoogle().then((value) {
+                        controller.addGoogleUser(
+                          controller.firebaseAuth.currentUser!.email!,
+                          controller.firebaseAuth.currentUser!.displayName!,
+                          controller.firebaseAuth.currentUser!.uid,
+                          controller.firebaseAuth.currentUser!.photoURL!,
+                        );
+                        Get.toNamed(
+                          '/splash',
+                        );
+                      });
+
+                }, icon: const Icon(Icons.face)),
               )
             ],
           ),
@@ -177,4 +201,12 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
+
+
+
+
+
+
 }
