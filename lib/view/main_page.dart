@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tory/module/colors.dart';
@@ -7,20 +6,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../module/components.dart';
+import '../module/model.dart';
+
 
 var _mwidth;
 var _mheight;
 
 //remove
 var title1 = '숨겨왔던 나의 수줍은 마음';
-var cate1 = 'open';
-var cate2 = 'lock';
+var cate1 = '참여형';
+var cate2 = '대화형';
 var type1 = 'long';
 var type2 = 'short';
 var subtitle1 = '모두 네게 줄게\n썸녀에게 고백하기';
 var image1 = 'assets/love1.png';
-var image0='assets/love2.png';
-var title='사랑해... 사랑한다고... 고백모음';
+var image0 = 'assets/love2.png';
+var title = '사랑해... 사랑한다고... 고백모음';
 //
 
 //TODO: SliverAppBar 해야함
@@ -28,8 +29,106 @@ class MainPage extends StatefulWidget {
   @override
   _MainPage createState() => _MainPage();
 }
+
 class _MainPage extends State<MainPage> {
   String dropdownValue = 'All';
+  final Stream<QuerySnapshot> storysStream =
+      FirebaseFirestore.instance.collection('story').snapshots();
+  // List<Story> _storys = [];
+late var len =0;
+  // @override
+  // void initState(){
+  //   fetchStorys();
+  //   super.initState();
+  // }
+
+  // CollectionReference _collectionReference =
+  //     FirebaseFirestore.instance.collection('story');
+  //
+  // fetchStorys() async {
+  //   var storys = await FirebaseFirestore.instance.collection('story').get();
+  //   mapStorys(storys);
+  // }
+  //
+  // mapStorys(QuerySnapshot<Map<String, dynamic>> storys) {
+  //   var _list = storys.docs
+  //       .map(
+  //         (story) => Story(
+  //             Category: story['Category'],
+  //             DOC_ID: story['DOC_ID'],
+  //             Title: story['Title'],
+  //             ExplainText: story['ExplainText'],
+  //             User_ID: story['User_ID'],
+  //             EndType: story['EndType'],
+  //             Like: story['Like'],
+  //             EndIndex: story['EndIndex'],
+  //             dateTime: story['DateTime']),
+  //       )
+  //       .toList();
+  //
+  //   setState(() {
+  //     _storys = _list;
+  //   });
+  // }
+
+  var _storyRef = FirebaseFirestore.instance.collection('story');
+
+
+  Stream<List<Story>> storyMainStream(String dropdownValue) {
+
+    //dropdown 정렬 like가 많은 순
+    if(dropdownValue == '인기순'){
+      return _storyRef.orderBy('like', descending: true).snapshots().map((value) => value.docs
+          .map((element) => Story(
+        category: element.data()["category"],
+        doc_id: element.data()["doc_id"],
+        title: element.data()["title"],
+        explain: element.data()["explain"],
+        user_id: element.data()["user_id"],
+        end_type: element.data()["end_type"],
+        like: element.data()["like"],
+        end_index:element.data()["end_index"],
+        day:element.data()["day"],
+      )
+      )
+          .toList());
+    }
+    else if(dropdownValue == '최신순'){
+      return _storyRef.orderBy('day', descending: true).snapshots().map((value) => value.docs
+          .map((element) => Story(
+        category: element.data()["category"],
+        doc_id: element.data()["doc_id"],
+        title: element.data()["title"],
+        explain: element.data()["explain"],
+        user_id: element.data()["user_id"],
+        end_type: element.data()["end_type"],
+        like: element.data()["like"],
+        end_index:element.data()["end_index"],
+        day:element.data()["day"],
+      )
+      )
+          .toList());
+    }
+
+
+    else{
+      return _storyRef.snapshots().map((value) => value.docs
+          .map((element) => Story(
+                category: element.data()["category"],
+                doc_id: element.data()["doc_id"],
+                title: element.data()["title"],
+                explain: element.data()["explain"],
+                user_id: element.data()["user_id"],
+                end_type: element.data()["end_type"],
+                like: element.data()["like"],
+                end_index: element.data()["end_index"],
+                day: element.data()["day"],
+              ))
+          .toList());
+    }
+
+
+  }
 
   Widget build(BuildContext context) {
     _mwidth = MediaQuery.of(context).size.width;
@@ -58,7 +157,11 @@ class _MainPage extends State<MainPage> {
           children: [
             Stack(
               children: [
-                Container(height: 90, width: _mwidth,color: Color(0xFFAAC8C8),),
+                Container(
+                  height: 90,
+                  width: _mwidth,
+                  color: Color(0xFFAAC8C8),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -73,14 +176,13 @@ class _MainPage extends State<MainPage> {
                           child: Image.asset(
                             '${image0}',
                             fit: BoxFit.fill,
-                          )
-                      ),
+                          )),
                     ),
                   ],
                 ),
               ],
             ),
-            SizedBox(height:20.h),
+            SizedBox(height: 20.h),
             //header name, num of story, filter, sorting
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +190,9 @@ class _MainPage extends State<MainPage> {
                 //header name
                 Row(
                   children: [
-                    SizedBox(width: 24,),
+                    SizedBox(
+                      width: 24,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -96,9 +200,11 @@ class _MainPage extends State<MainPage> {
                           '${title}',
                           style: headline2(color: text_on_color),
                         ),
-                        SizedBox(height: 8,),
+                        SizedBox(
+                          height: 8,
+                        ),
                         Text(
-                          '총 24개의 토리',
+                          '총 ${len}개의 토리',
                           style: body4(color: text_on_color),
                         ),
                       ],
@@ -112,7 +218,7 @@ class _MainPage extends State<MainPage> {
                   children: [
                     // filter
                     Container(
-                      width: MediaQuery.of(context).size.width/2,
+                      width: MediaQuery.of(context).size.width / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -125,7 +231,7 @@ class _MainPage extends State<MainPage> {
                     ),
                     // 정렬기능
                     Container(
-                      width: (MediaQuery.of(context).size.width/2-22).w,
+                      width: (MediaQuery.of(context).size.width / 2 - 22).w,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -134,8 +240,11 @@ class _MainPage extends State<MainPage> {
                               // Step 3.
                               value: dropdownValue,
                               // Step 4.
-                              items: <String>['All', '인기순', '댓글순']
-                                  .map<DropdownMenuItem<String>>((String value) {
+                              items: <String>[
+                                'All',
+                                '인기순',
+                                '최신순'
+                              ].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(
@@ -155,7 +264,6 @@ class _MainPage extends State<MainPage> {
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ],
@@ -165,7 +273,7 @@ class _MainPage extends State<MainPage> {
               height: 10.h,
             ),
             //short long 등 스토리 리스트
-            Container(
+            /*Container(
               height: 470.h,
               child: ListView(
                 scrollDirection: Axis.vertical,
@@ -185,7 +293,87 @@ class _MainPage extends State<MainPage> {
                   // ],),
                 ],
               ),
+            ),*/
+            //future builder
+            Container(
+              height: 470.h,
+              child: StreamBuilder<List<Story>>(
+                stream: storyMainStream(dropdownValue),
+                initialData: null,
+                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong ${snapshot.error}');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading");
+                  }
+
+                  var storyList = snapshot.data!;
+                  len= storyList.length;
+                  return ListView.builder(
+                    itemCount: storyList.length,
+                    itemBuilder: (context, index) {
+                      return mainPageListTile(
+                          storyList[index].title,
+                          storyList[index].explain,
+                          storyList[index].category,
+                          image1,
+                          type2);
+                    },
+                  );
+                },
+              ),
             ),
+            //listViewbuilder
+            /*Container(
+              height: 470.h,
+              child: ListView.builder(
+                itemCount: _storys.length,
+                itemBuilder: (context, index) {
+                  return mainPageListTile(
+                      _storys[index].title,
+                      _storys[index].explainText,
+                      _storys[index].category,
+                      image1,
+                      type2);
+                },
+              ),
+            ),*/
+            //streambuilder
+           /* Container(
+              height: 470.h,
+              child: StreamBuilder<QuerySnapshot>(
+                stream: storysStream,
+                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text('Something went wrong');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading");
+                  }
+
+
+                  return ListView(
+                    children: snapshot.data!.docs
+                        .map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+                      return mainPageListTile(data['title'], data['explain'],data['category'] , image1,type2);
+                      //   ListTile(
+                      //   title: Text(data['Title']),
+                      //   subtitle: Text(data['ExplainText']),
+                      // );
+                    })
+                        .toList()
+                        .cast(),
+                  );
+                },
+
+              ),
+            )*/
+
           ],
         ),
       ),
@@ -198,11 +386,10 @@ class _MainPage extends State<MainPage> {
       //   backgroundColor: Colors.pink,
       // ),
     );
-
   }
 }
 
-_sortingFilter(BuildContext context){
+_sortingFilter(BuildContext context) {
   showDialog(
       context: context,
       //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
@@ -210,8 +397,8 @@ _sortingFilter(BuildContext context){
       builder: (BuildContext context) {
         return AlertDialog(
           // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           //Dialog Main Title
           title: Column(
             children: <Widget>[
@@ -242,65 +429,16 @@ _sortingFilter(BuildContext context){
 
 void createData() {
   final usercol =
-  FirebaseFirestore.instance.collection("users").doc("userkey1");
+      FirebaseFirestore.instance.collection("users").doc("userkey1");
   usercol.set({
     "username": "abc",
     "age": 5,
   });
 }
 
-//open/lock 별 구분 컨테이너
-Widget _categoryMark(String category) {
-  if (category == 'open') {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2),
-        color: Primary600,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 3,
-            blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      width: 40.w,
-      height: 21.h,
-      child: Padding(
-        padding: const EdgeInsets.all(1.0),
-        child: Text(' ${category}'),
-      ),
-    );
-  }
-  else {
-    return
-      Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
-          color: tertiary100,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 3,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        width: 35.w,
-        height: 21.h,
-        child: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Text('${category}'),
-        ),
-      );
-  }
-}
-
 //listTile
 Widget mainPageListTile(
-    String title, String subtitle, String category, String image,String type) {
+    String title, String subtitle, String category, String image, String type) {
   var textid; // image,title,subtitle,textid
 
   return InkWell(
@@ -337,7 +475,7 @@ Widget mainPageListTile(
                         Positioned(
                           left: 0,
                           top: 8.h,
-                          child: _categoryMark(category),
+                          child: categoryMark(category),
                         ),
                       ],
                     ),
@@ -360,33 +498,38 @@ Widget mainPageListTile(
                         ),
                         Text(
                           '#sdfs #fsdf',
-                          style: button5( color: SubPrimary700),
+                          style: button5(color: SubPrimary700),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              // Positioned(
-              //     right: 2,
-              //     bottom: 12,
-              //     child: Text('조짱',style: subtitlestyle(size: 12, color: text1),)
-              // ),
+              Positioned(
+                  right: 2,
+                  bottom: 12,
+                  child: Row(
+                    children: [
+                      Text('조짱',style: TextStyle(fontSize: 12,color: text_grey1),),
+                      Icon(Icons.arrow_forward_ios,color: text_grey1,size: 12,)
+                    ],
+                  )
+              ),
             ],
           ),
           SizedBox(
             height: 8.h,
           ),
           Divider(
-            thickness: 1, indent: 24.w, // empty space to the leading edge of divider.
+            thickness: 1,
+            indent: 24.w, // empty space to the leading edge of divider.
             endIndent: 24.w,
           ),
         ],
       ),
     ),
-    onTap: (){
+    onTap: () {
       print('sdfasdfjellpo${category}');
     },
   );
 }
-
