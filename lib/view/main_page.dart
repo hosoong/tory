@@ -34,42 +34,9 @@ class _MainPage extends State<MainPage> {
   String dropdownValue = 'All';
   final Stream<QuerySnapshot> storysStream =
       FirebaseFirestore.instance.collection('story').snapshots();
-  // List<Story> _storys = [];
-late var len =0;
-  // @override
-  // void initState(){
-  //   fetchStorys();
-  //   super.initState();
-  // }
 
-  // CollectionReference _collectionReference =
-  //     FirebaseFirestore.instance.collection('story');
-  //
-  // fetchStorys() async {
-  //   var storys = await FirebaseFirestore.instance.collection('story').get();
-  //   mapStorys(storys);
-  // }
-  //
-  // mapStorys(QuerySnapshot<Map<String, dynamic>> storys) {
-  //   var _list = storys.docs
-  //       .map(
-  //         (story) => Story(
-  //             Category: story['Category'],
-  //             DOC_ID: story['DOC_ID'],
-  //             Title: story['Title'],
-  //             ExplainText: story['ExplainText'],
-  //             User_ID: story['User_ID'],
-  //             EndType: story['EndType'],
-  //             Like: story['Like'],
-  //             EndIndex: story['EndIndex'],
-  //             dateTime: story['DateTime']),
-  //       )
-  //       .toList();
-  //
-  //   setState(() {
-  //     _storys = _list;
-  //   });
-  // }
+    late var len =0;
+
 
   var _storyRef = FirebaseFirestore.instance.collection('story');
 
@@ -272,29 +239,7 @@ late var len =0;
             SizedBox(
               height: 10.h,
             ),
-            //short long 등 스토리 리스트
-            /*Container(
-              height: 470.h,
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                physics: ClampingScrollPhysics(),
-                // children: [
-                //   Column(
-                children:<Widget>[
-                  mainPageListTile(title1, subtitle1, cate1, image1,type1),
-                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
-                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
-                  mainPageListTile(title1, subtitle1, cate1, image1,type1),
-                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
-                  mainPageListTile(title1, subtitle1, cate2, image1,type2),
-                  // ListView.builder(
-                  //     itemBuilder: itemBuilder
-                  // )
-                  // ],),
-                ],
-              ),
-            ),*/
-            //future builder
+            //stream builder
             Container(
               height: 470.h,
               child: StreamBuilder<List<Story>>(
@@ -325,115 +270,11 @@ late var len =0;
                 },
               ),
             ),
-            //listViewbuilder
-            /*Container(
-              height: 470.h,
-              child: ListView.builder(
-                itemCount: _storys.length,
-                itemBuilder: (context, index) {
-                  return mainPageListTile(
-                      _storys[index].title,
-                      _storys[index].explainText,
-                      _storys[index].category,
-                      image1,
-                      type2);
-                },
-              ),
-            ),*/
-            //streambuilder
-           /* Container(
-              height: 470.h,
-              child: StreamBuilder<QuerySnapshot>(
-                stream: storysStream,
-                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.hasError) {
-                    return const Text('Something went wrong');
-                  }
-
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Text("Loading");
-                  }
-
-
-                  return ListView(
-                    children: snapshot.data!.docs
-                        .map((DocumentSnapshot document) {
-                      Map<String, dynamic> data =
-                      document.data()! as Map<String, dynamic>;
-                      return mainPageListTile(data['title'], data['explain'],data['category'] , image1,type2);
-                      //   ListTile(
-                      //   title: Text(data['Title']),
-                      //   subtitle: Text(data['ExplainText']),
-                      // );
-                    })
-                        .toList()
-                        .cast(),
-                  );
-                },
-
-              ),
-            )*/
-
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {
-      //     _sortingFilter(context);
-      //   },
-      //   label: const Text('좋아요'),
-      //   icon: const Icon(Icons.thumb_up),
-      //   backgroundColor: Colors.pink,
-      // ),
     );
   }
-}
-
-_sortingFilter(BuildContext context) {
-  showDialog(
-      context: context,
-      //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          //Dialog Main Title
-          title: Column(
-            children: <Widget>[
-              new Text("Dialog Title"),
-            ],
-          ),
-          //
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Dialog Content",
-              ),
-            ],
-          ),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("확인"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      });
-}
-
-void createData() {
-  final usercol =
-      FirebaseFirestore.instance.collection("users").doc("userkey1");
-  usercol.set({
-    "username": "abc",
-    "age": 5,
-  });
 }
 
 //listTile
