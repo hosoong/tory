@@ -3,23 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>2101583322-5lkp1jdc5q8cfkp6jnsvt4h40lft7hor.apps.googleusercontent.com</string>
+
+	<string>567814377809-8mc8r6dol6bju8qfnl6f0alc5792njaf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.2101583322-5lkp1jdc5q8cfkp6jnsvt4h40lft7hor</string>
+	<string>com.googleusercontent.apps.567814377809-8mc8r6dol6bju8qfnl6f0alc5792njaf</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>2101583322-pilra8m3t3qa215prcugs2a4homlboo3.apps.googleusercontent.com</string>
+	<string>567814377809-cvas1tnolrik7jhrvalvlf9br3vgd1hr.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD6Gycej_jHmaCbQBXtO-dqSgqjT3nlmbw</string>
+	<string>AIzaSyCzvjpD_MPU0gjbNlkeuYfGDrArPrHyVG8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>2101583322</string>
+	<string>567814377809</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.toryTest</string>
+	<string>com.example.tory</string>
 	<key>PROJECT_ID</key>
-	<string>tory-test</string>
+	<string>tory-74c72</string>
 	<key>STORAGE_BUCKET</key>
-	<string>tory-test.appspot.com</string>
+	<string>tory-74c72.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +32,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:2101583322:ios:df0ee86c2ad76e4b1634e3</string>
+	<string>1:567814377809:ios:3361cc288293f642664370</string>
 </dict>
 </plist>
