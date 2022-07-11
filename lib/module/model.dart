@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Story{
   Story({
     required this.category,
@@ -13,11 +15,11 @@ class Story{
 
   final String category;
   final String doc_id;
-  final String day;
-  final String end_index;
+  final Timestamp day;
+  final int end_index;
   final String end_type;
   final String user_id;
-  final String like;
+  final int like;
   final String title;
   final String explain;
 }
