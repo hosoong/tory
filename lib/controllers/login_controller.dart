@@ -28,13 +28,12 @@ Future<UserCredential> signInWithGoogle() async {
 }
 
   Future<void> addGoogleUser(String email, String name, String uid, String userphoto) async {
-    firebase.collection("user").doc(uid).set({
+    firebase.collection("users").doc(uid).set({
       "email": email,
       "name": name,
       "uid": uid,
-      "FriendsUidList": [],
       "userphoto":userphoto,
-      "id" : "id",
+      // "id" : "id",
     });
   }
 
